@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <fragment
-            class="fr.esir.progm.wifidirectdemo.DeviceListFragment"
+            class="com.example.androidgames.DeviceListFragment"
             android:id="@+id/frag_list"
             android:layout_width="match_parent"
             android:layout_height="@dimen/phone_list_height"
@@ -19,7 +19,7 @@
             <!-- Preview: layout=@layout/row_devices -->
         </fragment>
         <fragment
-            class="fr.esir.progm.wifidirectdemo.DeviceDetailFragment"
+            class="com.example.androidgames.DeviceDetailFragment"
             android:id="@+id/frag_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

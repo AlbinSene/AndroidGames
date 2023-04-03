@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
+    android:background="#CF8D2C"
     android:padding="24dp"
     tools:context=".Questionnaire">
 
@@ -80,7 +80,8 @@
         android:id="@+id/submit_btn"
         android:text="Submit"
         android:layout_below="@id/choices_layout"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/black"/>
 
 
 

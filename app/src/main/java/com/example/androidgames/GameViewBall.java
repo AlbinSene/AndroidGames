@@ -5,10 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class GameViewBall extends View {
+public class GameViewBall extends View implements SensorEventListener {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Bitmap ballBitMap;
 
@@ -39,7 +42,16 @@ public class GameViewBall extends View {
     @Override
     protected void onDraw (Canvas canvas){
         super.onDraw(canvas);
-
         canvas.drawBitmap(ballBitMap, currentX, currentY, paint);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+
     }
 }

@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/buttonsolo"
             android:layout_centerHorizontal = "true"
-            android:text="Mode multijoueur" />
+            android:text="Mode multijoueur"
+            android:onClick="startWifip2p"/>
     </RelativeLayout>
 </RelativeLayout>

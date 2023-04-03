@@ -18,4 +18,9 @@ public class Menu extends AppCompatActivity {
         Intent intent = new Intent(this, GameMode.class);
         startActivity(intent);
     }
+
+    public void startWifip2p(View v){
+        Intent intent = new Intent(this, WifiDirectActivity.class);
+        startActivity(intent);
+    }
 }

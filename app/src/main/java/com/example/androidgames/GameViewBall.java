@@ -56,7 +56,7 @@ public class GameViewBall extends View implements SensorEventListener {
     float y= sensorEvent.values[1];
 
     //affichage des x et y
-        // Log.i("DEBUG", x + " - " + y);
+         Log.i("DEBUG", x + " - " + y);
         this.moveImage(-x*4,y*4);
     }
     private void moveImage(float x, float y){
@@ -65,15 +65,15 @@ public class GameViewBall extends View implements SensorEventListener {
         this.currentX += (int) x;
         this.currentY += (int) y;
 
-        if ( this.currentX < 1 ) {
+        if ( this.currentX <=0 ) {
             this.currentX = 0;
-        } else if ( this.currentX + this.imageWidth > this.getWidth() ){
+        } else if ( this.currentX + this.imageWidth >= this.getWidth() ){
             this.currentX = this.getWidth() - this.imageWidth;
         }
 
-        if ( this.currentY < 0 ) {
+        if ( this.currentY <= 0 ) {
             this.currentY = 0;
-        } else if ( this.currentY + this.imageHeight > this.getHeight() ){
+        } else if ( this.currentY + this.imageHeight >= this.getHeight() ){
             this.currentY = this.getHeight() - this.imageHeight;
         }
         this.invalidate();

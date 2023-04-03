@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CF8D2C"
+    android:background="#976242"
     android:padding="24dp"
     tools:context=".Questionnaire">
 
@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/total_question"
+        android:textStyle="bold"
         android:text="Total Questions "
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"

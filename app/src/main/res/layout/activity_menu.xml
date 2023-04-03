@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/homepage"
     android:layout_below="@id/label">
+
 
 
     <TextView android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:gravity="center"
         android:text="Bienvenue sur notre jeu historique"
-        android:layout_centerHorizontal = "true"
+        android:layout_centerHorizontal="true"/>
 
-        android:layout_centerVertical = "true"/>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="518dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerHorizontal = "true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_below="@id/label">
 
         <Button
             android:id="@+id/buttonsolo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal = "true"
             android:text="Mode solo"
-            android:onClick="startGameModeSolo" />
+            android:onClick="startGameModeSolo"
+            android:backgroundTint="@color/white"
+            android:textColor="#976242"
+            android:layout_margin="5dp"/>
 
         <Button
             android:id="@+id/buttonmulti"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/buttonsolo"
-            android:layout_centerHorizontal = "true"
             android:text="Mode multijoueur"
-            android:onClick="startWifip2p"/>
-    </RelativeLayout>
+            android:onClick="startWifip2p"
+            android:backgroundTint="@color/white"
+            android:textColor="#976242"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
+
 </RelativeLayout>

@@ -24,11 +24,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WifiDirectDemo">
-
-        <activity android:name=".GameMode"
-            android:exported="false"/>
-        <activity android:name=".Questionnaire"
-            android:exported="false"/>
+        <activity
+            android:name=".MegaBall"
+            android:exported="false" />
+        <activity
+            android:name=".GameMode"
+            android:exported="false" />
+        <activity
+            android:name=".Questionnaire"
+            android:exported="false" />
         <activity
             android:name=".Menu"
             android:exported="true">

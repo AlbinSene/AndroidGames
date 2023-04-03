@@ -26,7 +26,7 @@
         android:theme="@style/Theme.WifiDirectDemo">
 
         <activity
-        android:name=".MegaBall"
+        android:name=".MegaBall" android:screenOrientation="portrait"
         android:exported="false" />
         <activity android:name=".GameMode"
             android:exported="false"/>

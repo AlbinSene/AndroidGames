@@ -24,7 +24,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WifiDirectDemo">
         <activity
-            android:name=".menu"
+            android:name=".questionnaire"
+            android:exported="false" />
+        <activity
+            android:name=".Menu"
             android:exported="false" />
         <activity
             android:name=".WifiDirectActivity"

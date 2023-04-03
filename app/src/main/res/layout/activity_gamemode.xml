@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:text="Mode de jeu Solo :"
-        android:layout_centerInParent="true"
+        android:text="\n\n\nMode de jeu Solo : \n\n\n"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
 
         android:id="@+id/text"/>

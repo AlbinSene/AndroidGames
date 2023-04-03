@@ -9,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class GameViewBall extends View implements SensorEventListener {
@@ -36,7 +37,7 @@ public class GameViewBall extends View implements SensorEventListener {
         imageHeight = ballBitMap.getHeight();
 
         currentX= (width - imageWidth)/2;
-        currentY= (height-imageHeight)/2;
+        currentY= (height- imageHeight)/2;
     }
 
     @Override
@@ -47,11 +48,44 @@ public class GameViewBall extends View implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
-
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+    float x= sensorEvent.values[0];
+    float y= sensorEvent.values[1];
 
+    //affichage des x et y
+        // Log.i("DEBUG", x + " - " + y);
+        this.moveImage(-x*4,y*4);
+    }
+    private void moveImage(float x, float y){
+        currentX +=(int)x;
+        currentY +=(int)y;
+        this.currentX += (int) x;
+        this.currentY += (int) y;
+
+        if ( this.currentX < 1 ) {
+            this.currentX = 0;
+        } else if ( this.currentX + this.imageWidth > this.getWidth() ){
+            this.currentX = this.getWidth() - this.imageWidth;
+        }
+
+        if ( this.currentY < 0 ) {
+            this.currentY = 0;
+        } else if ( this.currentY + this.imageHeight > this.getHeight() ){
+            this.currentY = this.getHeight() - this.imageHeight;
+        }
+        this.invalidate();
     }
 }
+
+
+
+
+
+
+
+
+
+

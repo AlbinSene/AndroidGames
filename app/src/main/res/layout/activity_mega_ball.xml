@@ -8,7 +8,7 @@
     tools:context=".MegaBall">
 
     <view
-        android:id="@+id/view2"
+        android:id="@+id/theview"
         class="com.example.androidgames.GameViewBall"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -26,7 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal = "true"
-            android:text="Mode solo" />
+            android:text="Mode solo"
+            android:onClick="startGameModeSolo" />
 
         <Button
             android:id="@+id/buttonmulti"

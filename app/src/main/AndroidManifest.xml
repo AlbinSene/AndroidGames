@@ -24,14 +24,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WifiDirectDemo">
-        <activity
-            android:name=".questionnaire"
-            android:exported="false" />
+
+        <activity android:name=".GameMode"
+            android:exported="false"/>
+        <activity android:name=".Questionnaire"
+            android:exported="false"/>
         <activity
             android:name=".Menu"
-            android:exported="false" />
-        <activity
-            android:name=".WifiDirectActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

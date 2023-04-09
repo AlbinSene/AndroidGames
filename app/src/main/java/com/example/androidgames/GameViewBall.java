@@ -67,7 +67,7 @@ public class GameViewBall extends View implements SensorEventListener {
         float y= sensorEvent.values[1];
 
         //affichage des x et y
-        Log.i("DEBUG", x + " - " + y);
+        //Log.i("DEBUG", x + " - " + y);
         this.moveImage(-x*4,y*4);
 
     }
@@ -89,14 +89,16 @@ public class GameViewBall extends View implements SensorEventListener {
         } else if ( this.currentY + this.imageHeight >= this.getHeight() ){
             this.currentY = this.getHeight() - this.imageHeight;
         }
-       /* if(this.currentX<320 && this.currentY>1400 && timer== 50){
+        Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer);
+        if(this.currentX>500 && this.currentY>1450 && timer>= 500){
+            Log.i("DEBUG", "cond victoire ");
                 megaBall.setPassStatus("Passed");
                 megaBall.setScore(700);
             }else {
-            megaBall.setPassStatus("Failed");
-            megaBall.setScore(0);
-        }*/
-            Log.i("DEBUG", "victoire");
+                megaBall.setPassStatus("Failed");
+                megaBall.setScore(0);
+        }
+            //Log.i("DEBUG", "victoire");
         this.invalidate();
     }
 

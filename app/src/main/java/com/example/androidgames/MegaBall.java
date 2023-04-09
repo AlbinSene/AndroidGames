@@ -10,10 +10,10 @@ import android.os.Bundle;
 
 public class MegaBall extends AppCompatActivity {
 
-    private GameViewBall view;
-    private SensorManager sensorManager = null;
+    private GameViewBall view ;
+    private SensorManager sensorManager ;
 
-    private String passStatus;
+    public String passStatus= "IN PROGRESS";
 
     public void setPassStatus(String passStatus) {
         this.passStatus = passStatus;
@@ -23,7 +23,7 @@ public class MegaBall extends AppCompatActivity {
         return passStatus;
     }
 
-    private int score;
+    public int score = 0;
 
     public void setScore(int score) {
         this.score = score;
@@ -48,13 +48,13 @@ public class MegaBall extends AppCompatActivity {
             Log.i("DEBUG", sensor.getName() + "---" + sensor.getVendor());
         }*/
 
-        if (GameViewBall.getTimer() == 50) {
-            /*new AlertDialog.Builder(this)
+        if (GameViewBall.getTimer() >= 500) {
+            new AlertDialog.Builder(this)
                     .setTitle(passStatus)
                     .setMessage("Your score is : " + score)
                     .setPositiveButton("Restart", (dialogInterface, i) -> GameViewBall.restartGame())
                     .setCancelable(false)
-                    .show();*/
+                    .show();
 
         }
     }

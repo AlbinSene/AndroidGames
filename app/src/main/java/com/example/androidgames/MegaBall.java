@@ -49,12 +49,12 @@ public class MegaBall extends AppCompatActivity {
         }*/
 
         if (GameViewBall.getTimer() == 50) {
-            new AlertDialog.Builder(this)
+            /*new AlertDialog.Builder(this)
                     .setTitle(passStatus)
                     .setMessage("Your score is : " + score)
                     .setPositiveButton("Restart", (dialogInterface, i) -> GameViewBall.restartGame())
                     .setCancelable(false)
-                    .show();
+                    .show();*/
 
         }
     }

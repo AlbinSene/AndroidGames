@@ -89,13 +89,13 @@ public class GameViewBall extends View implements SensorEventListener {
         } else if ( this.currentY + this.imageHeight >= this.getHeight() ){
             this.currentY = this.getHeight() - this.imageHeight;
         }
-        if(this.currentX<320 && this.currentY>1400 && timer== 50){
+       /* if(this.currentX<320 && this.currentY>1400 && timer== 50){
                 megaBall.setPassStatus("Passed");
                 megaBall.setScore(700);
             }else {
             megaBall.setPassStatus("Failed");
             megaBall.setScore(0);
-        }
+        }*/
             Log.i("DEBUG", "victoire");
         this.invalidate();
     }

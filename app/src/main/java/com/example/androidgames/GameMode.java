@@ -25,7 +25,7 @@ public class GameMode extends AppCompatActivity {
         //startActivity(intent);
 
         setContentView(R.layout.game_list);
-        String[] list = {"light_sensor","mega_ball","questionnaire"};
+        String[] list = {"Light_sensor","Mega_ball","Questionnaire"};
         ArrayList listGames = new ArrayList<String>(Arrays.asList(list));
 
         //instantiate custom adapter

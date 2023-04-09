@@ -64,15 +64,15 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
                 String s = list.get(position);
 
                 switch (s){
-                    case "light_sensor":
+                    case "Light_sensor":
                         Intent lightSensorIntent = new Intent(context, Light_sensor.class);
                         context.startActivity(lightSensorIntent);
                         break;
-                    case "mega_ball":
+                    case "Mega_ball":
                         Intent megaBallIntent = new Intent(context, MegaBall.class);
                         context.startActivity(megaBallIntent);
                         break;
-                    case "questionnaire":
+                    case "Questionnaire":
                         Intent questionnaireIntent = new Intent(context, Questionnaire.class);
                         context.startActivity(questionnaireIntent);
                         break;

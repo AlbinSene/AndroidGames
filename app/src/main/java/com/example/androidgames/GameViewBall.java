@@ -76,6 +76,9 @@ public class GameViewBall extends View implements SensorEventListener {
         } else if ( this.currentY + this.imageHeight >= this.getHeight() ){
             this.currentY = this.getHeight() - this.imageHeight;
         }
+        if(this.currentX<-5 && this.currentY>5){
+            Log.i("DEBUG", "victoire");
+        }
         this.invalidate();
     }
 }

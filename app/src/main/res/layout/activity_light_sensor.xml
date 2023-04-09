@@ -6,23 +6,46 @@
     android:layout_height="match_parent"
     android:background="@drawable/homepage"
     tools:context=".Light_sensor">
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/question"
-        android:textStyle="bold"
-        android:text="Au secours je ne vois rien"
-        android:textColor="@color/black"
-        android:textSize="24dp"
-        android:textAlignment="center"
-        android:layout_margin="20dp"/>
+        android:id="@+id/choices_layout"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timer"
+            android:textStyle="bold"
+            android:text="TIMER"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            android:layout_margin="20dp"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Light"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text"
+            android:textStyle="bold"
+            android:text="Au secours \n la lumière m'aveugle"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            android:layout_margin="20dp"/>
 
-        />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Light"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

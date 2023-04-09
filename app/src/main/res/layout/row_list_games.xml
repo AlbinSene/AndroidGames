@@ -7,13 +7,18 @@
         android:id="@+id/gamename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"/>
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/play_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="Play"/>
+        android:text="Play"
+        android:backgroundTint="@color/white"
+        android:textColor="#976242"/>
 
 </RelativeLayout>

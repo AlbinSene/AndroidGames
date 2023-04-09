@@ -14,7 +14,7 @@ public class GameMode extends AppCompatActivity {
     }
 
     public void startGameList(View v){
-        Intent intent = new Intent(this, Questionnaire.class);
+        Intent intent = new Intent(this, MegaBall.class);
         startActivity(intent);
     }
 

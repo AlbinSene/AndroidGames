@@ -1,5 +1,6 @@
 package com.example.androidgames;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,7 @@ import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -16,10 +18,19 @@ public class GameViewBall extends View implements SensorEventListener {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Bitmap ballBitMap;
 
+    private MegaBall megaBall;
+
     private int imageWidth;
     private int imageHeight;
     private int currentX;
     private int currentY;
+    private static int timer;
+
+    public static int getTimer() {
+        return timer;
+    }
+
+    static int restart=0;
 
     public GameViewBall(Context context){
         super(context);
@@ -52,14 +63,16 @@ public class GameViewBall extends View implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-    float x= sensorEvent.values[0];
-    float y= sensorEvent.values[1];
+        float x= sensorEvent.values[0];
+        float y= sensorEvent.values[1];
 
-    //affichage des x et y
-         Log.i("DEBUG", x + " - " + y);
+        //affichage des x et y
+        Log.i("DEBUG", x + " - " + y);
         this.moveImage(-x*4,y*4);
+
     }
     private void moveImage(float x, float y){
+        timer++;
         currentX +=(int)x;
         currentY +=(int)y;
         this.currentX += (int) x;
@@ -76,10 +89,20 @@ public class GameViewBall extends View implements SensorEventListener {
         } else if ( this.currentY + this.imageHeight >= this.getHeight() ){
             this.currentY = this.getHeight() - this.imageHeight;
         }
-        if(this.currentX<-5 && this.currentY>5){
-            Log.i("DEBUG", "victoire");
+        if(this.currentX<320 && this.currentY>1400 && timer== 50){
+                megaBall.setPassStatus("Passed");
+                megaBall.setScore(700);
+            }else {
+            megaBall.setPassStatus("Failed");
+            megaBall.setScore(0);
         }
+            Log.i("DEBUG", "victoire");
         this.invalidate();
+    }
+
+
+    public static void restartGame(){
+        restart=1;
     }
 }
 

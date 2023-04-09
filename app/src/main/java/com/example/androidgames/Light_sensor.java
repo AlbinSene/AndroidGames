@@ -25,9 +25,8 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     //ajout du timer
     private static final long START_TIME_IN_MILLIS = 10000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
-    CountDownTimer mCountDownTimer;
-    boolean mTimerRunning;
-    View v;
+    private CountDownTimer mCountDownTimer;
+    private boolean mTimerRunning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

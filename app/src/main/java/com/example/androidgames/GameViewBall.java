@@ -27,6 +27,7 @@ public class GameViewBall extends View implements SensorEventListener {
     private int currentY;
     private static int timer;
 
+
     public static int getTimer() {
         return timer;
     }
@@ -92,9 +93,11 @@ public class GameViewBall extends View implements SensorEventListener {
         } else if ( this.currentY + this.imageHeight >= this.getHeight() ){
             this.currentY = this.getHeight() - this.imageHeight;
         }
-        Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer);
+        //Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer);
         if(this.currentX>500 && this.currentY>1450 && timer>= 500){
             Log.i("DEBUG", "cond victoire ");
+
+            ((MegaBall) getContext()).traiterGameView(this);
                 //megaBall.setPassStatus("Passed");
                 //megaBall.setScore(700);
             }else {
@@ -109,6 +112,7 @@ public class GameViewBall extends View implements SensorEventListener {
     public static void restartGame(){
         restart=1;
     }
+
 }
 
 

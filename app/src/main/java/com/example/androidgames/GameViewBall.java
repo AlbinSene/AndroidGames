@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -39,6 +40,8 @@ public class GameViewBall extends View implements SensorEventListener {
     public GameViewBall(Context context, AttributeSet attrSet){
         super(context, attrSet);
     }
+
+
 
     @Override
     protected void onSizeChanged(int width, int height, int oldw, int oldh){
@@ -92,11 +95,11 @@ public class GameViewBall extends View implements SensorEventListener {
         Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer);
         if(this.currentX>500 && this.currentY>1450 && timer>= 500){
             Log.i("DEBUG", "cond victoire ");
-                megaBall.setPassStatus("Passed");
-                megaBall.setScore(700);
+                //megaBall.setPassStatus("Passed");
+                //megaBall.setScore(700);
             }else {
-                megaBall.setPassStatus("Failed");
-                megaBall.setScore(0);
+                //megaBall.setPassStatus("Failed");
+                //megaBall.setScore(0);
         }
             //Log.i("DEBUG", "victoire");
         this.invalidate();

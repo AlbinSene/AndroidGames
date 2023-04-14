@@ -13,7 +13,7 @@ public class MegaBall extends AppCompatActivity {
     private GameViewBall view ;
     private SensorManager sensorManager ;
 
-    public String passStatus= "IN PROGRESS";
+/*public String passStatus= "IN PROGRESS";
 
     public void setPassStatus(String passStatus) {
         this.passStatus = passStatus;
@@ -27,7 +27,7 @@ public class MegaBall extends AppCompatActivity {
 
     public void setScore(int score) {
         this.score = score;
-    }
+    }*/
 
     @Override
     public Context getBaseContext() {
@@ -48,15 +48,16 @@ public class MegaBall extends AppCompatActivity {
             Log.i("DEBUG", sensor.getName() + "---" + sensor.getVendor());
         }*/
 
-        if (GameViewBall.getTimer() >= 500) {
+        /*if (GameViewBall.getTimer() >= 500) {
             new AlertDialog.Builder(this)
                     .setTitle(passStatus)
                     .setMessage("Your score is : " + score)
                     .setPositiveButton("Restart", (dialogInterface, i) -> GameViewBall.restartGame())
                     .setCancelable(false)
                     .show();
+                    }*/
 
-        }
+
     }
 
     @Override

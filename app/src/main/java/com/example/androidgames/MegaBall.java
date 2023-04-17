@@ -7,6 +7,7 @@ import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 
 public class MegaBall extends AppCompatActivity {
 
@@ -70,5 +71,11 @@ public class MegaBall extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(view);
+    }
+
+    public void traiterGameView(GameViewBall gameViewBall) {
+        Log.i("DEBUG","fin du game");
+        setContentView(R.layout.activity_light_sensor);
+
     }
 }

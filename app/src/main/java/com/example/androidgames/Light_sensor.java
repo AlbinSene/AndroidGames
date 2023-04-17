@@ -95,10 +95,13 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
         }.start();
     }
 
+    /*
+    Afficahge du score à partir du temps mis par le joueur pour cacher le capteur
+     */
     private String compScore(){
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-        int score = 120*seconds + 60* milliseconds;
+        int score = 12*seconds + 6* milliseconds;
         if (passStatus=="Failed"){
             seconds=0;
             milliseconds=0;
@@ -109,7 +112,6 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
+    public void onAccuracyChanged(Sensor sensor, int i) {}
 
-    }
     }

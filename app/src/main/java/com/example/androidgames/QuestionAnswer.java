@@ -1,5 +1,6 @@
 package com.example.androidgames;
 
+//classe contenant les questions ainsi que les réponses possibles et correctes
 public class QuestionAnswer {
     public static String question[] ={
             "Combien de Puy du Fou seront présents dans le monde en 2030 ?",

@@ -78,21 +78,27 @@ public class GameViewBall extends View implements SensorEventListener {
         timer++;
         currentX +=(int)x;
         currentY +=(int)y;
+        //changement des coordonnées pour bouger la balle
         this.currentX += (int) x;
         this.currentY += (int) y;
 
-        if ( this.currentX <=0 ) {
+        //délimitation de l'écran pour que la balle reste confinée
+        //horizontalement
+        if ( this.currentX <=0 ) { //bord gauche
             this.currentX = 0;
-        } else if ( this.currentX + this.imageWidth >= this.getWidth() ){
+        } else if ( this.currentX + this.imageWidth >= this.getWidth() ){ //bord droit
             this.currentX = this.getWidth() - this.imageWidth;
         }
-
-        if ( this.currentY <= 0 ) {
+        //délimitation de l'écran pour que la balle reste confinée
+        //verticalement
+        if ( this.currentY <= 0 ) { //en haut
             this.currentY = 0;
-        } else if ( this.currentY + this.imageHeight >= this.getHeight() ){
+        } else if ( this.currentY + this.imageHeight >= this.getHeight() ){ //en bas
             this.currentY = this.getHeight() - this.imageHeight;
         }
-        Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer);
+
+        Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer); //affichage des coordonnées
+        //condition de victoire
         if(this.currentX>500 && this.currentY>1450 && timer>= 500){
             Log.i("DEBUG", "cond victoire ");
                 //megaBall.setPassStatus("Passed");
@@ -102,6 +108,7 @@ public class GameViewBall extends View implements SensorEventListener {
                 //megaBall.setScore(0);
         }
             //Log.i("DEBUG", "victoire");
+        //autoriser le mouvement sur la view
         this.invalidate();
     }
 

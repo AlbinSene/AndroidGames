@@ -1,5 +1,5 @@
 package com.example.androidgames;
-
+//imports
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -11,12 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.util.Log;
-
-
-
-
-
-
 import java.util.Locale;
 
 public class Decompte extends AppCompatActivity {
@@ -37,6 +31,8 @@ public class Decompte extends AppCompatActivity {
     private boolean rectangleDisplayed = false; // Un booléen pour vérifier si le rectangle est déjà affiché
 
 
+    private int condVictoire = 4100;
+    private int marge = 500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +59,7 @@ public class Decompte extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("DEBUG", "appui");
-                if (mTimeLeftInMillis > 3700 && mTimeLeftInMillis < 4500) { // Vérification de l'objectif atteint (entre 2 et 4 secondes restantes)
+                if (mTimeLeftInMillis > condVictoire-marge && mTimeLeftInMillis < condVictoire+marge) { // Vérification de l'objectif atteint (entre 2 et 4 secondes restantes)
                     passStatus = "Passed";
                 } else {
                     passStatus = "Failed";

@@ -19,6 +19,7 @@ import java.util.Locale;
 public class Light_sensor extends AppCompatActivity implements SensorEventListener {
 
     TextView textView;
+    TextView timer;
     SensorManager sensorManager;
     Sensor sensor;
     String passStatus;
@@ -34,7 +35,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_light_sensor);
 
         textView = (TextView) findViewById(R.id.textView);
-
+        timer = (TextView)findViewById(R.id.timer);
         sensorManager = (SensorManager) getSystemService(Service.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
@@ -67,13 +68,13 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
         }
         if(mTimeLeftInMillis<10 ||sensorEvent.values[0]<10){
             onPause();
-
+            mCountDownTimer.cancel();
             String timeLeftFormatted = compScore();
             textView.setText(timeLeftFormatted);
             new AlertDialog.Builder(this)
                     .setTitle(passStatus)
                     .setMessage(timeLeftFormatted)
-                    .setPositiveButton("Restart",(dialogInterface, i) ->onPause())
+                    .setPositiveButton("Restart",(dialogInterface, i) ->restart())
                     .setCancelable(false)
                     .show();
         }
@@ -87,16 +88,18 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis=millisUntilFinished;
+                timer.setText("Timer : " + (int) (mTimeLeftInMillis / 1000) + "s "+ (int) (mTimeLeftInMillis % 1000)+"ms" );
             }
             @Override
             public void onFinish() {
                 mTimerRunning = false;
             }
         }.start();
+
     }
 
     /*
-    Afficahge du score à partir du temps mis par le joueur pour cacher le capteur
+    Affichage du score à partir du temps mis par le joueur pour cacher le capteur
      */
     private String compScore(){
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
@@ -114,4 +117,9 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
 
+    void restart(){
+        startTimer();
     }
+    }
+
+

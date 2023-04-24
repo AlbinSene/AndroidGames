@@ -80,6 +80,14 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
                         Intent speedQuestionnaireIntent = new Intent(context, SpeedQuestionnaire.class);
                         context.startActivity(speedQuestionnaireIntent);
                         break;
+                    case "Decompte":
+                        Intent DecompteIntent = new Intent(context, Decompte.class);
+                        context.startActivity(DecompteIntent);
+                        break;
+                    /*case "Mouvement":
+                        Intent MouvementIntent = new Intent(context, Decompte.class);
+                        context.startActivity(MouvementIntent);
+                        break;*/
                 }
 
 

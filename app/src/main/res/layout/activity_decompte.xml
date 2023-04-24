@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#976242"
+    android:padding="24dp"
+    android:id="@+id/my_layout"
+    tools:context=".Decompte">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enonce"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Objectif : \n Appuyer sur le bouton\n quand vous pensez la valeur atteinte "
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/objectif"
+        android:textStyle="bold"
+        android:text="objectif"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@+id/enonce"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer"
+        android:textStyle="bold"
+        android:text="Timer a cacher"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_margin="20dp"
+        android:layout_above="@id/choices_layout"/>
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@color/black"
+        android:id="@+id/mon_rectangle"
+        android:layout_centerInParent="true"
+        android:shape="rectangle" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/choices_layout"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submit_btn"
+        android:text="Submit"
+        android:layout_below="@id/choices_layout"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/black"/>
+
+
+
+</RelativeLayout>

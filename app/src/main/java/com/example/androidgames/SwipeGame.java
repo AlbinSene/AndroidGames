@@ -12,34 +12,59 @@ import java.util.ArrayList;
 public class SwipeGame extends AppCompatActivity  {
 
 
+    private ArrayList<String> listWin = new ArrayList<>();
+
+    private ArrayList<String> listPlayerMoves = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe_game);
 
-        ArrayList<String> listPlayerMoves = new ArrayList<String>();
+        listWin.add("top");
+        listWin.add("bottom");
+        listWin.add("right");
+        listWin.add("left");
 
         TextView swipeView = (TextView) findViewById(R.id.swipeView);
         swipeView.setOnTouchListener(new OnSwipeTouchListener(SwipeGame.this) {
             public void onSwipeTop() {
                 //Toast.makeText(SwipeGame.this, "top", Toast.LENGTH_SHORT).show();
                 listPlayerMoves.add("top");
-                Log.d("DEBUG",listPlayerMoves.toString());
+                checkWin();
             }
             public void onSwipeRight() {
                 //Toast.makeText(SwipeGame.this, "right", Toast.LENGTH_SHORT).show();
                 listPlayerMoves.add("right");
+                checkWin();
             }
             public void onSwipeLeft() {
                 //Toast.makeText(SwipeGame.this, "left", Toast.LENGTH_SHORT).show();
                 listPlayerMoves.add("left");
+                checkWin();
             }
             public void onSwipeBottom() {
                 //Toast.makeText(SwipeGame.this, "bottom", Toast.LENGTH_SHORT).show();
                 listPlayerMoves.add("bottom");
+                checkWin();
             }
 
         });
+    }
+
+    private void checkWin(){
+        if (listPlayerMoves.size() < 4){
+
+        }
+        else {
+            if (listPlayerMoves.equals(listWin)){
+                Toast.makeText(SwipeGame.this, "gagne", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(SwipeGame.this, "perdu", Toast.LENGTH_SHORT).show();
+                listPlayerMoves.clear();
+            }
+        }
     }
 
 

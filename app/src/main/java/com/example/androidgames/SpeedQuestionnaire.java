@@ -26,7 +26,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
     private static final long START_TIME_IN_MILLIS = 10000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private CountDownTimer mCountDownTimer;
-    private boolean mTimerRunning;
+    private boolean mTimerRunning=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +98,12 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         String passStatus = "";
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-
-        if (seconds < totalQuestion * 3 && score>0.6*totalQuestion) {
-            passStatus = "Passed";
+        mCountDownTimer.cancel();
+        if (seconds < totalQuestion * 3 && score>0.6*totalQuestion ) {
+            passStatus = "Passed in "+seconds+" s " + milliseconds + " ms";
             score = 12*seconds + 6* milliseconds;
         } else {
-            passStatus = "Failed";
+            passStatus = "Failed "+seconds+" s " + milliseconds + " ms";
             score=0;
         }
 
@@ -121,6 +121,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         score = 0;
         currentQuestionIndex = 0;
         loadNewQuestion();
+        startTimer();
     }
 
 
@@ -129,6 +130,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis=millisUntilFinished;
+                timerTextView.setText("Timer : " + (int) (mTimeLeftInMillis / 1000) + "s "+ (int) (mTimeLeftInMillis % 1000)+"ms" );
             }
             @Override
             public void onFinish() {
@@ -137,5 +139,6 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         }.start();
 
     }
+
 }
 

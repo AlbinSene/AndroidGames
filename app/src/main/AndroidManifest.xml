@@ -25,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WifiDirectDemo">
         <activity
+            android:name=".SwipeGame"
+            android:exported="false" />
+        <activity
             android:name=".Decompte"
             android:exported="false" />
         <activity

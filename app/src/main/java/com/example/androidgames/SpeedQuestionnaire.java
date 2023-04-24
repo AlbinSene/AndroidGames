@@ -18,6 +18,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
     Button submitBtn;
 
     int score = 0;
+    private String passStatus = "Failed";
     int totalQuestion = SpeedQA.question.length;
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
@@ -27,6 +28,8 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning=true;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +53,6 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         timerTextView.setText("Timer : " + (int) (mTimeLeftInMillis ) / 1000 + "s "+ (int) (mTimeLeftInMillis ) % 1000+"ms" );
 
         loadNewQuestion();
-
-
-
     }
 
     @Override
@@ -95,29 +95,22 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
     }
 
     void finishQuiz() {
-        String passStatus = "";
+        int mul;
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
         mCountDownTimer.cancel();
         if (seconds < totalQuestion * 3 && score>0.6*totalQuestion ) {
-            passStatus = "Passed in "+seconds+" s " + milliseconds + " ms";
-            score = 12*seconds + 6* milliseconds;
+            passStatus = "Passed";
+            mul = 12*seconds + 6* milliseconds;
         } else {
-            passStatus = "Failed "+seconds+" s " + milliseconds + " ms";
-            score=0;
+            passStatus = "Failed";
+            mul=0;
         }
 
-        new AlertDialog.Builder(this)
-                .setTitle(passStatus)
-                .setMessage("Score is " + score)
-                .setPositiveButton("Restart", (dialogInterface, i) -> restartQuiz())
-                .setCancelable(false)
-                .show();
-
-
+        showEndScreen("Score is " + mul + "\n(in "+ seconds+ " s "+milliseconds + "ms and " + score +"/"+totalQuestion+")");
     }
 
-    void restartQuiz() {
+    void restart() {
         score = 0;
         currentQuestionIndex = 0;
         loadNewQuestion();
@@ -135,9 +128,20 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                String timeLeftFormatted = "Score : "+score;
+                showEndScreen(timeLeftFormatted);
             }
         }.start();
 
+    }
+
+    private void showEndScreen(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(passStatus)
+                .setMessage(message)
+                .setPositiveButton("Restart",(dialogInterface, i) ->restart())
+                .setCancelable(false)
+                .show();
     }
 
 }

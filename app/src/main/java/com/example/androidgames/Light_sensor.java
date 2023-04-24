@@ -71,12 +71,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
             mCountDownTimer.cancel();
             String timeLeftFormatted = compScore();
             textView.setText(timeLeftFormatted);
-            new AlertDialog.Builder(this)
-                    .setTitle(passStatus)
-                    .setMessage(timeLeftFormatted)
-                    .setPositiveButton("Restart",(dialogInterface, i) ->restart())
-                    .setCancelable(false)
-                    .show();
+            showEndScreen(timeLeftFormatted);
         }
 
 
@@ -93,11 +88,21 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                String timeLeftFormatted = compScore();
+                showEndScreen(timeLeftFormatted);
             }
         }.start();
 
     }
 
+    private void showEndScreen(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(passStatus)
+                .setMessage(message)
+                .setPositiveButton("Restart",(dialogInterface, i) ->restart())
+                .setCancelable(false)
+                .show();
+    }
     /*
     Affichage du score à partir du temps mis par le joueur pour cacher le capteur
      */

@@ -86,7 +86,6 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
         }
 
 
-
     }
 
     //demarrage du timer

@@ -14,7 +14,7 @@
         android:textStyle="bold"
         android:textSize="30dp"
         android:gravity="center"
-        android:text="Bienvenue\n\n Avec notre jeu historique, nous avons à coeur de respecter les traditions.\n \nNoémie et Albin "
+        android:text="Bienvenue\n\n Sur le jeu NOLBIN\n \nNoémie et Albin\n\n "
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout

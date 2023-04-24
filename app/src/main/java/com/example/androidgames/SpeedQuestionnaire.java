@@ -108,8 +108,6 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         }
 
         showEndScreen("Score is " + mul + "\n(in "+ seconds+ " s "+milliseconds + "ms and " + score +"/"+totalQuestion+")");
-
-
     }
 
     void restart() {

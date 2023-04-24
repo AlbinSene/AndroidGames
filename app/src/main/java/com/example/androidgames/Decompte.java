@@ -1,7 +1,6 @@
 package com.example.androidgames;
-//imports
+// Importations des bibliothèques nécessaires
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -13,24 +12,28 @@ import android.widget.RelativeLayout;
 import android.util.Log;
 import java.util.Locale;
 
+/**
+ * Activité qui affiche un compte à rebours (d'une durée de 10 secondes)
+ * ainsi qu'un objectif (cacher un capteur pendant 4 secondes et 10 millisecondes).
+ * Après 2 secondes, un rectangle noir apparaît sur l'écran et le joueur doit
+ * cacher le capteur pendant la durée restante pour atteindre l'objectif.
+ */
 public class Decompte extends AppCompatActivity {
+    TextView objectif; // TextView pour afficher l'objectif
+    TextView timer; // TextView pour afficher le compte à rebours
+    RelativeLayout myLayout; // Layout pour afficher le rectangle noir sur l'écran
 
-    TextView objectif;
-    TextView timer;
-    RelativeLayout myLayout; // Ajout de l'objet layout pour afficher le rectangle
+    String passStatus; // Statut de réussite de l'utilisateur (passé/échoué)
 
-
-    String passStatus;
-
-    //ajout du timer
+    // Durée de départ du compte à rebours
     private static final long START_TIME_IN_MILLIS = 10000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
-    private CountDownTimer mCountDownTimer;
-    private boolean mTimerRunning;
+    private CountDownTimer mCountDownTimer; // Compte à rebours
+    private boolean mTimerRunning; // Booléen pour vérifier si le compte à rebours est en cours d'exécution
 
-    private boolean rectangleDisplayed = false; // Un booléen pour vérifier si le rectangle est déjà affiché
+    private boolean rectangleDisplayed = false; // Booléen pour vérifier si le rectangle est déjà affiché
 
-
+    // Définition de la durée à atteindre pour réussir l'objectif, avec une marge de 500 millisecondes
     private int condVictoire = 4100;
     private int marge = 500;
     @Override

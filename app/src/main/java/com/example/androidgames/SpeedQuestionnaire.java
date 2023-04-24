@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClickListener {
     TextView totalQuestionsTextView;
+    TextView timerTextView;
     TextView questionTextView;
     Button ansT, ansF;
     Button submitBtn;
@@ -20,6 +22,12 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
 
+
+    private static final long START_TIME_IN_MILLIS = 10000;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private CountDownTimer mCountDownTimer;
+    private boolean mTimerRunning;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,17 +35,22 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
 
         totalQuestionsTextView = findViewById(R.id.total_question);
         questionTextView = findViewById(R.id.question);
+        timerTextView = findViewById(R.id.timer);
         ansT = findViewById(R.id.ans_A);
         ansF = findViewById(R.id.ans_B);
         submitBtn = findViewById(R.id.submit_btn);
 
+
         ansT.setOnClickListener(this);
         ansF.setOnClickListener(this);
         submitBtn.setOnClickListener(this);
-
         totalQuestionsTextView.setText("Total questions : " + totalQuestion);
 
+        startTimer();
+        timerTextView.setText("Timer : " + (int) (mTimeLeftInMillis ) / 1000 + "s "+ (int) (mTimeLeftInMillis ) % 1000+"ms" );
+
         loadNewQuestion();
+
 
 
     }
@@ -55,6 +68,8 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
             }
             currentQuestionIndex++;
             loadNewQuestion();
+            timerTextView.setText("Timer : " + (int) (mTimeLeftInMillis ) / 1000 + "s "+ (int) (mTimeLeftInMillis ) % 1000+"ms" );
+
 
 
         } else {
@@ -81,15 +96,20 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
 
     void finishQuiz() {
         String passStatus = "";
-        if (score > totalQuestion * 0.60) {
+        int seconds = (int) (mTimeLeftInMillis ) / 1000;
+        int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
+
+        if (seconds < totalQuestion * 3 && score>0.6*totalQuestion) {
             passStatus = "Passed";
+            score = 12*seconds + 6* milliseconds;
         } else {
             passStatus = "Failed";
+            score=0;
         }
 
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
-                .setMessage("Score is " + score + " out of " + totalQuestion)
+                .setMessage("Score is " + score)
                 .setPositiveButton("Restart", (dialogInterface, i) -> restartQuiz())
                 .setCancelable(false)
                 .show();
@@ -101,6 +121,21 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         score = 0;
         currentQuestionIndex = 0;
         loadNewQuestion();
+    }
+
+
+    private void startTimer(){
+        mCountDownTimer=new CountDownTimer(mTimeLeftInMillis,10) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis=millisUntilFinished;
+            }
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+            }
+        }.start();
+
     }
 }
 

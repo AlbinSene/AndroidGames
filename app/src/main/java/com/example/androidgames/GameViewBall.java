@@ -14,6 +14,7 @@ import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.graphics.Color;
 
 public class GameViewBall extends View implements SensorEventListener {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -26,6 +27,10 @@ public class GameViewBall extends View implements SensorEventListener {
     private int currentX;
     private int currentY;
     private static int timer;
+
+    private static int victoireX = 652;
+    private static int victoireY = 1500;
+    private static int marge = 10;
 
 
     public static int getTimer() {
@@ -59,6 +64,11 @@ public class GameViewBall extends View implements SensorEventListener {
     protected void onDraw (Canvas canvas){
         super.onDraw(canvas);
         canvas.drawBitmap(ballBitMap, currentX, currentY, paint);
+
+        paint.setColor(Color.RED);
+
+        // Dessiner un cercle rouge de 1 pixel de diamètre aux coordonnées (500, 750)
+        canvas.drawCircle(victoireX, victoireY, 10f, paint);
     }
 
     @Override
@@ -94,7 +104,9 @@ public class GameViewBall extends View implements SensorEventListener {
             this.currentY = this.getHeight() - this.imageHeight;
         }
         //Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer);
-        if(this.currentX>500 && this.currentY>1450 && timer>= 500){
+        if(this.currentX<victoireX //&& this.currentX>victoireX+marge
+                && this.currentY<victoireY //&& this.currentY>victoireY+marge
+                && timer>= 500){
             Log.i("DEBUG", "cond victoire ");
 
             ((MegaBall) getContext()).traiterGameView(this);

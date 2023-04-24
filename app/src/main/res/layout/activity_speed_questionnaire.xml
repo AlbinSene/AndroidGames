@@ -18,6 +18,18 @@
         android:layout_centerHorizontal="true"
         android:textSize="20dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer"
+        android:textStyle="bold"
+        android:text="Timer "
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_below="@+id/total_question"
+        />
+
 
     <TextView
         android:layout_width="match_parent"

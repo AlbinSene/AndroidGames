@@ -15,7 +15,12 @@
         android:gravity="center"
 
         android:id="@+id/text"/>
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true">
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +40,7 @@
         android:onClick="startGameList"
         android:backgroundTint="@color/white"
         android:textColor="#976242"/>
+    </LinearLayout>
 
 
 </RelativeLayout>

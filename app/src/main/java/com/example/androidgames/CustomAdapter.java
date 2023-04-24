@@ -84,10 +84,10 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
                         Intent DecompteIntent = new Intent(context, Decompte.class);
                         context.startActivity(DecompteIntent);
                         break;
-                    /*case "Mouvement":
-                        Intent MouvementIntent = new Intent(context, Decompte.class);
-                        context.startActivity(MouvementIntent);
-                        break;*/
+                    case "SwipeGame":
+                        Intent SwipeGameIntent = new Intent(context, SwipeGame.class);
+                        context.startActivity(SwipeGameIntent);
+                        break;
                 }
 
 

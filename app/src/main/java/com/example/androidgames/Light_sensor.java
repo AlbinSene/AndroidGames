@@ -18,12 +18,15 @@ import java.util.Locale;
 
 public class Light_sensor extends AppCompatActivity implements SensorEventListener {
 
+    //declaration des attributs de manipulation des layouts et capteurs
     TextView textView;
     TextView timer;
     SensorManager sensorManager;
     Sensor sensor;
+    //declaration du statut de reussite du jeu
     String passStatus;
-    //ajout du timer
+
+    //attributs pour letimer
     private static final long START_TIME_IN_MILLIS = 10000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private CountDownTimer mCountDownTimer;
@@ -34,11 +37,13 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_light_sensor);
 
+        //initialisation des attributs
         textView = (TextView) findViewById(R.id.textView);
         timer = (TextView)findViewById(R.id.timer);
         sensorManager = (SensorManager) getSystemService(Service.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
+        //démarrage du timer
         startTimer();
 
     }
@@ -57,20 +62,26 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     }
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        Log.i("DEBUG", "temps" + mTimeLeftInMillis);
+       // Log.i("DEBUG", "temps" + mTimeLeftInMillis);
     if(sensorEvent.sensor.getType()==Sensor.TYPE_LIGHT){
         textView.setText(""+sensorEvent.values[0]);
     }
+    //si le timer est supérieur à 10 et que l'on capte moins de 10 lux
         if(sensorEvent.values[0]<10 && mTimeLeftInMillis>10){
-            passStatus = "Passed";
+            passStatus = "Passed"; //alors victoire
         }else{
-            passStatus = "Failed";
+            passStatus = "Failed"; //sinon defaire
         }
-        if(mTimeLeftInMillis<10 ||sensorEvent.values[0]<10){
+        //fin du minijeu si le temps est inférieur à 10 ou que le jeu est reussi
+        if(mTimeLeftInMillis<10 || sensorEvent.values[0]<10){
+            //arret
             onPause();
+            //arret du temps
             mCountDownTimer.cancel();
+            //utilisation du compt score pour
             String timeLeftFormatted = compScore();
-            textView.setText(timeLeftFormatted);
+            //textView.setText(timeLeftFormatted);
+            //affichage de l'écran de fin
             showEndScreen(timeLeftFormatted);
         }
 
@@ -78,6 +89,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
 
     }
 
+    //demarrage du timer
     private void startTimer(){
         mCountDownTimer=new CountDownTimer(mTimeLeftInMillis,10) {
             @Override
@@ -88,6 +100,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                //affichage de l'ecran de fin
                 String timeLeftFormatted = compScore();
                 showEndScreen(timeLeftFormatted);
             }

@@ -10,6 +10,10 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.util.Log;
+
+
+
 
 
 
@@ -55,22 +59,23 @@ public class Decompte extends AppCompatActivity {
         // Vérification de l'objectif atteint après clic sur le bouton "Submit"
         Button submitBtn = findViewById(R.id.submit_btn);
         submitBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                if (rectangleDisplayed) { // Vérification que le rectangle est déjà affiché
-                    if (mTimeLeftInMillis > 3700 && mTimeLeftInMillis < 4500) { // Vérification de l'objectif atteint (entre 2 et 4 secondes restantes)
-                        passStatus = "Passed";
-                    } else {
-                        passStatus = "Failed";
-                    }
-                    String scoreText = compScore();
+                Log.i("DEBUG", "appui");
+                if (mTimeLeftInMillis > 3700 && mTimeLeftInMillis < 4500) { // Vérification de l'objectif atteint (entre 2 et 4 secondes restantes)
+                    passStatus = "Passed";
+                } else {
+                    passStatus = "Failed";
+                }
+                String scoreText = compScore();
                     // Affichage du score dans une boîte de dialogue
                     AlertDialog.Builder builder = new AlertDialog.Builder(Decompte.this);
                     builder.setTitle("Score");
                     builder.setMessage(scoreText);
                     builder.setPositiveButton("OK", null);
                     builder.show();
-                }
+
             }
         });
     }

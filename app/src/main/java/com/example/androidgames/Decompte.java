@@ -41,16 +41,16 @@ public class Decompte extends AppCompatActivity {
         objectif = (TextView) findViewById(R.id.objectif);
         timer = (TextView)findViewById(R.id.timer);
         myLayout = (RelativeLayout) findViewById(R.id.my_layout); // Récupération de l'objet layout
-
+        objectif.setText("Objectif : 4 s 10 ms");
         startTimer();
 
-        // Affichage du rectangle après 8 secondes
+        // Affichage du rectangle après 2 secondes
         myLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
                 displayRectangle();
             }
-        }, 8000); // Délai de 8 secondes en millisecondes
+        }, 2000); // Délai de 2 secondes en millisecondes
 
         // Vérification de l'objectif atteint après clic sur le bouton "Submit"
         Button submitBtn = findViewById(R.id.submit_btn);
@@ -58,7 +58,7 @@ public class Decompte extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (rectangleDisplayed) { // Vérification que le rectangle est déjà affiché
-                    if (mTimeLeftInMillis > 2000 && mTimeLeftInMillis < 4000) { // Vérification de l'objectif atteint (entre 2 et 4 secondes restantes)
+                    if (mTimeLeftInMillis > 3700 && mTimeLeftInMillis < 4500) { // Vérification de l'objectif atteint (entre 2 et 4 secondes restantes)
                         passStatus = "Passed";
                     } else {
                         passStatus = "Failed";
@@ -95,7 +95,7 @@ public class Decompte extends AppCompatActivity {
     private String compScore(){
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-        int score = 12*seconds + 6* milliseconds;
+        int score = 6*seconds + 12* milliseconds;
         if (passStatus=="Failed"){
             seconds=0;
             milliseconds=0;
@@ -111,14 +111,14 @@ public class Decompte extends AppCompatActivity {
 
         // Create a new rectangle view
         View rectangleView = new View(this);
-        rectangleView.setBackgroundColor(Color.RED);
+        rectangleView.setBackgroundColor(Color.BLACK);
 
         // Set the layout params for the rectangle view
-        int width = 200; // Change the width as needed
-        int height = 100; // Change the height as needed
+        int width = 500; // Change the width as needed
+        int height = 300; // Change the height as needed
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width, height);
-        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT); // Center the rectangle in the parent layout
-
+        layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.timer);
+        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         // Add the rectangle view to the parent layout
         parentLayout.addView(rectangleView, layoutParams);
     }

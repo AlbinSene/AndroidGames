@@ -26,7 +26,7 @@ public class Decompte extends AppCompatActivity {
     String passStatus; // Statut de réussite de l'utilisateur (passé/échoué)
 
     // Durée de départ du compte à rebours
-    private static final long START_TIME_IN_MILLIS = 10000;
+    private static final long START_TIME_IN_MILLIS = 15000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private CountDownTimer mCountDownTimer; // Compte à rebours
     private boolean mTimerRunning; // Booléen pour vérifier si le compte à rebours est en cours d'exécution
@@ -35,7 +35,8 @@ public class Decompte extends AppCompatActivity {
 
     // Définition de la durée à atteindre pour réussir l'objectif, avec une marge de 500 millisecondes
     private int condVictoire = 4100;
-    private int marge = 500;
+    private int marge = 1000;
+    private int dureeAvantCache = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class Decompte extends AppCompatActivity {
             public void run() {
                 displayRectangle();
             }
-        }, 2000); // Délai de 2 secondes en millisecondes
+        }, dureeAvantCache); // Délai en millisecondes
 
         // Vérification de l'objectif atteint après clic sur le bouton "Submit"
         Button submitBtn = findViewById(R.id.submit_btn);

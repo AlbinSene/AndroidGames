@@ -14,21 +14,6 @@ public class MegaBall extends AppCompatActivity {
     private GameViewBall view ;
     private SensorManager sensorManager ;
 
-/*public String passStatus= "IN PROGRESS";
-
-    public void setPassStatus(String passStatus) {
-        this.passStatus = passStatus;
-    }
-
-    public String getPassStatus() {
-        return passStatus;
-    }
-
-    public int score = 0;
-
-    public void setScore(int score) {
-        this.score = score;
-    }*/
 
     @Override
     public Context getBaseContext() {

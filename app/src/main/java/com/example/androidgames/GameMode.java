@@ -1,6 +1,5 @@
 package com.example.androidgames;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,7 +36,7 @@ public class GameMode extends AppCompatActivity {
     }
 
     public void startDefi(View v){
-        Intent intent = new Intent(this, defiHub.class);
+        Intent intent = new Intent(this, DefiHub.class);
         startActivity(intent);
     }
 

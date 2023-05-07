@@ -1,5 +1,6 @@
 package com.example.androidgames;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -97,6 +98,12 @@ public class SwipeGame extends AppCompatActivity {
     }
 
     void actionSuite() {
+        Intent intent = new Intent();
+        intent.putExtra("key_score", 666);
+
+        setResult(RESULT_OK, intent);
+
+        finish();
     }
 
     private void startTimer() {

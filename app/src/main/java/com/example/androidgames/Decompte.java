@@ -1,6 +1,8 @@
 package com.example.androidgames;
 // Importations des bibliothèques nécessaires
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -135,7 +137,12 @@ public class Decompte extends AppCompatActivity {
     }
 
     void actionSuite(){
+        Intent intent = new Intent();
+        intent.putExtra("key_score", 666);
 
+        setResult(RESULT_OK, intent);
+
+        finish();
     }
 
 }

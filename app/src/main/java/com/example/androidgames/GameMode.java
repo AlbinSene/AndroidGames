@@ -36,5 +36,10 @@ public class GameMode extends AppCompatActivity {
         lView.setAdapter(adapter);
     }
 
+    public void startDefi(View v){
+        Intent intent = new Intent(this, defiHub.class);
+        startActivity(intent);
+    }
+
 
 }

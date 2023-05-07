@@ -46,6 +46,8 @@
         <activity
             android:name=".Questionnaire"
             android:exported="false" />
+        <activity android:name=".defiHub"
+            android:exported="false"/>
         <activity
             android:name=".WifiDirectActivity"
             android:exported="false" />

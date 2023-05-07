@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.Service;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -139,8 +140,14 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int i) {}
 
     void actionSuite(){
-        startTimer();
+        Intent intent = new Intent();
+        intent.putExtra("key_score", 666);
+
+        setResult(RESULT_OK, intent);
+
+        finish();
+
     }
-    }
+}
 
 

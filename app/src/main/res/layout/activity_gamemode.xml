@@ -28,6 +28,7 @@
         android:layout_below="@+id/text"
         android:layout_centerHorizontal="true"
         android:id="@+id/buttonDefi"
+        android:onClick="startDefi"
         android:backgroundTint="@color/white"
         android:textColor="#976242"/>
 

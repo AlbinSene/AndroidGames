@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -57,6 +58,11 @@ public class MegaBall extends AppCompatActivity {
     }
 
     void actionSuite(){
+        Intent intent = new Intent();
+        intent.putExtra("key_score", 666);
 
+        setResult(RESULT_OK, intent);
+
+        finish();
     }
 }

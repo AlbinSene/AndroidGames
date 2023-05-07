@@ -23,6 +23,9 @@ public class DefiHub extends AppCompatActivity {
         activityToDo.add(0);
         activityToDo.add(1);
         activityToDo.add(2);
+        activityToDo.add(3);
+        activityToDo.add(4);
+        activityToDo.add(5);
     }
 
     public void nextGame(View v){
@@ -36,9 +39,21 @@ public class DefiHub extends AppCompatActivity {
                 startActivityForResult(megaBallIntent,0);
                 break;
             case 2:
-                //pareil
+                Intent questionnaireIntent = new Intent(this, Questionnaire.class);
+                startActivityForResult(questionnaireIntent,0);
                 break;
-            //autres case
+            case 3:
+                Intent speedQuestionnaireIntent = new Intent(this, SpeedQuestionnaire.class);
+                startActivityForResult(speedQuestionnaireIntent,0);
+                break;
+            case 4:
+                Intent decompteIntent = new Intent(this, Decompte.class);
+                startActivityForResult(decompteIntent,0);
+                break;
+            case 5:
+                Intent swipeGameIntent = new Intent(this, SwipeGame.class);
+                startActivityForResult(swipeGameIntent,0);
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + activityToDo.get(0));
         }

@@ -68,7 +68,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
         textView.setText(""+sensorEvent.values[0]);
     }
     //si le timer est supérieur à 10 et que l'on capte moins de 10 lux
-        if(sensorEvent.values[0]<10 && mTimeLeftInMillis>10){
+        if(sensorEvent.values[0]<10 && mTimeLeftInMillis>1){
             passStatus = "Passed"; //alors victoire
         }else{
             passStatus = "Failed"; //sinon defaire

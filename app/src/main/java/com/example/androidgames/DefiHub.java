@@ -1,5 +1,6 @@
 package com.example.androidgames;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class defiHub extends AppCompatActivity {
+public class DefiHub extends AppCompatActivity {
 
     private List<Integer> activityToDo = new ArrayList<>();
 

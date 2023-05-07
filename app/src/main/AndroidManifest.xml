@@ -46,8 +46,6 @@
         <activity
             android:name=".Questionnaire"
             android:exported="false" />
-        <activity android:name=".DefiHub"
-            android:exported="false"/>
         <activity
             android:name=".WifiDirectActivity"
             android:exported="false" />

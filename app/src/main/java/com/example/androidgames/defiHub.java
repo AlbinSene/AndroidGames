@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DefiHub extends AppCompatActivity {
+public class defiHub extends AppCompatActivity {
 
     private List<Integer> activityToDo = new ArrayList<>();
 

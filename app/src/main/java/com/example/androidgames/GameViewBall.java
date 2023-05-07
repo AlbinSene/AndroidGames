@@ -1,5 +1,6 @@
 package com.example.androidgames;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,6 +16,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.graphics.Color;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 public class GameViewBall extends View implements SensorEventListener {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -26,7 +30,15 @@ public class GameViewBall extends View implements SensorEventListener {
     private int imageHeight;
     private int currentX;
     private int currentY;
-    private static int timer;
+
+    TextView timer = new TextView(getContext()); // TextView pour afficher le compte à rebours
+
+    // Durée de départ du compte à rebours
+    private static final long START_TIME_IN_MILLIS = 15000;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private CountDownTimer mCountDownTimer; // Compte à rebours
+    private boolean mTimerRunning; // Booléen pour vérifier si le compte à rebours est en cours d'exécution
+
 
     private static int victoireX = 652;
     private static int victoireY = 1500;
@@ -35,18 +47,20 @@ public class GameViewBall extends View implements SensorEventListener {
     private String passStatus= "Failed";
 
 
-    public static int getTimer() {
-        return timer;
-    }
+
 
     static int restart=0;
 
     public GameViewBall(Context context){
         super(context);
+        startTimer();
+
     }
 
     public GameViewBall(Context context, AttributeSet attrSet){
         super(context, attrSet);
+        startTimer();
+
     }
 
 
@@ -60,7 +74,10 @@ public class GameViewBall extends View implements SensorEventListener {
 
         currentX= (width - imageWidth)/2;
         currentY= (height- imageHeight)/2;
+        timer = (TextView) ((Activity) getContext()).findViewById(R.id.timer);
+
     }
+
 
     @Override
     protected void onDraw (Canvas canvas){
@@ -69,8 +86,8 @@ public class GameViewBall extends View implements SensorEventListener {
 
         paint.setColor(Color.RED);
 
-        // Dessiner un cercle rouge de 1 pixel de diamètre aux coordonnées (500, 750)
-        canvas.drawCircle(victoireX, victoireY, 10f, paint);
+        // Dessiner un cercle rouge de 1 pixel de diamètre aux coordonnées de victoire
+        canvas.drawCircle(victoireX, victoireY, 14f, paint);
     }
 
     @Override
@@ -85,10 +102,10 @@ public class GameViewBall extends View implements SensorEventListener {
         //affichage des x et y
         //Log.i("DEBUG", x + " - " + y);
         this.moveImage(-x*4,y*4);
+        invalidate();
 
     }
     private void moveImage(float x, float y){
-        timer++;
         currentX +=(int)x;
         currentY +=(int)y;
         this.currentX += (int) x;
@@ -106,21 +123,19 @@ public class GameViewBall extends View implements SensorEventListener {
             this.currentY = this.getHeight() - this.imageHeight;
         }
         //Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer);
-        if(this.currentX<victoireX //&& this.currentX>victoireX+marge
-                && this.currentY<victoireY //&& this.currentY>victoireY+marge
-                && timer>= 500){
-            //Log.i("DEBUG", "cond victoire ");
+        int seconds = (int) (mTimeLeftInMillis ) / 1000;
+        int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
+        if(this.currentX>victoireX //&& this.currentX>victoireX+marge
+                && this.currentY>victoireY //&& this.currentY>victoireY+marge
+               && seconds>1 && milliseconds>10
+        ){
+            Log.i("DEBUG", "cond victoire ");
             score =1000;
-
+            passStatus="Passed";
             ((MegaBall) getContext()).traiterGameView(this,score,passStatus);
-                //megaBall.setPassStatus("Passed");
-                //megaBall.setScore(700);
-            }else {
-                //megaBall.setPassStatus("Failed");
-                //megaBall.setScore(0);
         }
             //Log.i("DEBUG", "victoire");
-        this.invalidate();
+        invalidate();
     }
 
 
@@ -128,6 +143,35 @@ public class GameViewBall extends View implements SensorEventListener {
         restart=1;
     }
 
+
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 10) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                timer.setText((int) (mTimeLeftInMillis / 1000) + " s " + (int) (mTimeLeftInMillis % 1000) + " ms");
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+
+            }
+        }.start();
+    }
+
+        private String compScore(){
+            int seconds = (int) (mTimeLeftInMillis ) / 1000;
+            int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
+            int score = 6*seconds + 12* milliseconds;
+            if (passStatus=="Failed"){
+                seconds=0;
+                milliseconds=0;
+                score=0;
+            }
+            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", seconds, milliseconds);
+            return ("You did : "+timeLeftFormatted + "\n Your score is : " + score);
+    }
 }
 
 

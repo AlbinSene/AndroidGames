@@ -8,6 +8,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class MegaBall extends AppCompatActivity {
 
@@ -24,49 +25,38 @@ public class MegaBall extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mega_ball);
-
-        view = (GameViewBall) findViewById(R.id.theview);
-        //Verification de la presence d'un accelerometre
+        view = findViewById(R.id.theview); // Utilisation de findViewById pour récupérer GameViewBall
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        /*
-        List<Sensor> sensors = mgr.getSensorList((Sensor.TYPE_ALL));
-        for(Sensor sensor : sensors ){
-            Log.i("DEBUG", sensor.getName() + "---" + sensor.getVendor());
-        }*/
-
-        /*if (GameViewBall.getTimer() >= 500) {
-            new AlertDialog.Builder(this)
-                    .setTitle(passStatus)
-                    .setMessage("Your score is : " + score)
-                    .setPositiveButton("Restart", (dialogInterface, i) -> GameViewBall.restartGame())
-                    .setCancelable(false)
-                    .show();
-                    }*/
-
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(view, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), sensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(view, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(view);
+
     }
 
     public void traiterGameView(GameViewBall gameViewBall,int score,String passStatus) {
         //Log.i("DEBUG","fin du game");
-        AlertDialog.Builder builder = new AlertDialog.Builder(MegaBall.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(passStatus);
         builder.setMessage("Your score is : "+score);
-        builder.setPositiveButton("OK", null);
+        builder.setPositiveButton("OK", (dialogInterface, i) ->actionSuite());
         builder.show();
         onPause();
         //setContentView(R.layout.activity_light_sensor);
+
+    }
+
+    void actionSuite(){
 
     }
 }

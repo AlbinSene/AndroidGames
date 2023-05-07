@@ -48,7 +48,7 @@ public class GameViewBall extends View implements SensorEventListener {
     private boolean mTimerRunning; // Booléen pour vérifier si le compte à rebours est en cours d'exécution
 
 
-    private static int victoireX = 60;
+    private static int victoireX = 60 ;
     private static int victoireY = 60;
     private static int marge = 50;
     private int score=0;

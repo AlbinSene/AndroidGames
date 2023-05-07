@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#976242"
+
+    >
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/swipeView"
-        android:text="Swiper ici"/>
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:text="Swiper ici : HAUT BAS DROITE GAUCHE" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer"
+        android:background="#976242"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:text="TIMER"
+        android:layout_below="@id/swipeView" />
+
 
 </RelativeLayout>

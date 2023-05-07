@@ -58,9 +58,15 @@ public class MegaBall extends AppCompatActivity {
         sensorManager.unregisterListener(view);
     }
 
-    public void traiterGameView(GameViewBall gameViewBall) {
+    public void traiterGameView(GameViewBall gameViewBall,int score) {
         Log.i("DEBUG","fin du game");
-        setContentView(R.layout.activity_light_sensor);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MegaBall.this);
+        builder.setTitle("Score");
+        builder.setMessage(" "+score);
+        builder.setPositiveButton("OK", null);
+        builder.show();
+        onPause();
+        //setContentView(R.layout.activity_light_sensor);
 
     }
 }

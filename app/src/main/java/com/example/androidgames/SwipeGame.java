@@ -67,7 +67,7 @@ public class SwipeGame extends AppCompatActivity {
     private void checkWin() {
         int seconds = (int) (mTimeLeftInMillis) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis) % 1000;
-        Log.i("DEBUG", "checkwin");
+        //Log.i("DEBUG", "checkwin");
         if (listPlayerMoves.size() < 4) {
             // Nombre de mouvements insuffisant
         } else {
@@ -75,13 +75,13 @@ public class SwipeGame extends AppCompatActivity {
                 // Mouvements corrects, gagne
                 //Toast.makeText(SwipeGame.this, "Gagne", Toast.LENGTH_SHORT).show();
                 passStatus = "Passed";
-                Log.i("DEBUG","win");
-               // showEndScreen("Your score is: " + seconds + "s " + milliseconds + "ms\nYour score is " + 6 * seconds + 12 * milliseconds);
+                //Log.i("DEBUG","win");
+                int score =6 * seconds + 12 * milliseconds;
+               showEndScreen("Your score is: " + seconds + "s " + milliseconds + "ms\nYour score is " + score);
             } else {
                 Log.i("DEBUG","loose");
                 // Mouvements incorrects, perd
-                Toast.makeText(SwipeGame.this, "PERD", Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(SwipeGame.this, "PERD", Toast.LENGTH_SHORT).show();
                 showEndScreen("You did: 0s 0ms\nYour score is: 0");
                 listPlayerMoves.clear();
             }
@@ -95,6 +95,7 @@ public class SwipeGame extends AppCompatActivity {
                 .setPositiveButton("OK", (dialogInterface, i) -> actionSuite())
                 .setCancelable(false)
                 .show();
+        onPause();
     }
 
     void actionSuite() {

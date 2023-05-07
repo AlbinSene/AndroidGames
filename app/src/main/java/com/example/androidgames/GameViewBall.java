@@ -13,10 +13,18 @@ import android.hardware.SensorEventListener;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.graphics.Color;
+import android.view.WindowManager;
 import android.widget.TextView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.view.View;
+
 
 import java.util.Locale;
 
@@ -40,8 +48,8 @@ public class GameViewBall extends View implements SensorEventListener {
     private boolean mTimerRunning; // Booléen pour vérifier si le compte à rebours est en cours d'exécution
 
 
-    private static int victoireX = 652;
-    private static int victoireY = 1500;
+    private static int victoireX = 60;
+    private static int victoireY = 60;
     private static int marge = 10;
     private int score=0;
     private String passStatus= "Failed";
@@ -54,12 +62,28 @@ public class GameViewBall extends View implements SensorEventListener {
     public GameViewBall(Context context){
         super(context);
         startTimer();
+        WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
+
+        victoireX = screenWidth * victoireX / 100;
+        victoireY = screenHeight * victoireY / 100;
 
     }
 
     public GameViewBall(Context context, AttributeSet attrSet){
         super(context, attrSet);
         startTimer();
+        WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
+
+        victoireX = screenWidth * victoireX / 100;
+        victoireY = screenHeight * victoireY / 100;
 
     }
 

@@ -83,6 +83,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
             //textView.setText(timeLeftFormatted);
             //affichage de l'écran de fin
             showEndScreen(timeLeftFormatted);
+            onPause();
         }
 
 
@@ -102,6 +103,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
                 //affichage de l'ecran de fin
                 String timeLeftFormatted = compScore();
                 showEndScreen(timeLeftFormatted);
+                onPause();
             }
         }.start();
 
@@ -111,9 +113,11 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage(message)
-                .setPositiveButton("Restart",(dialogInterface, i) ->restart())
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
                 .setCancelable(false)
                 .show();
+        onPause();
+        //mCountDownTimer.onFinish();
     }
     /*
     Affichage du score à partir du temps mis par le joueur pour cacher le capteur
@@ -127,14 +131,14 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
             milliseconds=0;
             score=0;
         }
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", seconds, milliseconds);
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02ds %02dms", seconds, milliseconds);
     return ("You did : "+timeLeftFormatted + "\n Your score is : " + score);
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
 
-    void restart(){
+    void actionSuite(){
         startTimer();
     }
     }

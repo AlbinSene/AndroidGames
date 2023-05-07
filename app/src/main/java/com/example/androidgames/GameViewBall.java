@@ -32,6 +32,7 @@ public class GameViewBall extends View implements SensorEventListener {
     private static int victoireY = 1500;
     private static int marge = 10;
     private int score=0;
+    private String passStatus= "Failed";
 
 
     public static int getTimer() {
@@ -108,9 +109,10 @@ public class GameViewBall extends View implements SensorEventListener {
         if(this.currentX<victoireX //&& this.currentX>victoireX+marge
                 && this.currentY<victoireY //&& this.currentY>victoireY+marge
                 && timer>= 500){
-            Log.i("DEBUG", "cond victoire ");
+            //Log.i("DEBUG", "cond victoire ");
             score =1000;
-            ((MegaBall) getContext()).traiterGameView(this,score);
+
+            ((MegaBall) getContext()).traiterGameView(this,score,passStatus);
                 //megaBall.setPassStatus("Passed");
                 //megaBall.setScore(700);
             }else {

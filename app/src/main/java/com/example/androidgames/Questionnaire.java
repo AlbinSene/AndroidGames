@@ -19,6 +19,8 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
 
+    private String passStatus="Failed";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,24 +91,24 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
     }
 
     void finishQuiz(){
-        String passStatus = "";
         if(score > totalQuestion*0.60){
             passStatus = "Passed";
         }else{
             passStatus = "Failed";
         }
-
-        new AlertDialog.Builder(this)
-                .setTitle(passStatus)
-                .setMessage("Score is "+ score+" out of "+ totalQuestion)
-                .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
-                .setCancelable(false)
-                .show();
-
-
+        showEndScreen("Your score is : "+ score+" out of "+ totalQuestion);
     }
 
-    void restartQuiz(){
+    private void showEndScreen(String message){
+        new AlertDialog.Builder(this)
+                .setTitle(passStatus)
+                .setMessage(message)
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
+                .setCancelable(false)
+                .show();
+    }
+
+    void actionSuite(){
         score = 0;
         currentQuestionIndex =0;
         loadNewQuestion();

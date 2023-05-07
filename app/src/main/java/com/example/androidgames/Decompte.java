@@ -69,15 +69,21 @@ public class Decompte extends AppCompatActivity {
                     passStatus = "Failed";
                 }
                 String scoreText = compScore();
-                    // Affichage du score dans une boîte de dialogue
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Decompte.this);
-                    builder.setTitle("Score");
-                    builder.setMessage(scoreText);
-                    builder.setPositiveButton("OK", null);
-                    builder.show();
+                // Affichage du score dans une boîte de dialogue
+                showEndScreen(scoreText);
+
 
             }
         });
+    }
+
+    private void showEndScreen(String message){
+        new AlertDialog.Builder(this)
+                .setTitle(passStatus)
+                .setMessage(message)
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
+                .setCancelable(false)
+                .show();
     }
 
     private void startTimer(){
@@ -126,6 +132,10 @@ public class Decompte extends AppCompatActivity {
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         // Add the rectangle view to the parent layout
         parentLayout.addView(rectangleView, layoutParams);
+    }
+
+    void actionSuite(){
+
     }
 
 }

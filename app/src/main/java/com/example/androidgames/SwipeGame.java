@@ -1,5 +1,6 @@
 package com.example.androidgames;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ public class SwipeGame extends AppCompatActivity  {
 
     private ArrayList<String> listPlayerMoves = new ArrayList<>();
 
+    private String passStatus = "Failed";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,15 +60,31 @@ public class SwipeGame extends AppCompatActivity  {
         }
         else {
             if (listPlayerMoves.equals(listWin)){
-                Toast.makeText(SwipeGame.this, "gagne", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SwipeGame.this, "gagne", Toast.LENGTH_SHORT).show();
+                passStatus = "Passed";
+                showEndScreen("score");
             }
             else {
+                showEndScreen("bite");
                 Toast.makeText(SwipeGame.this, "perdu", Toast.LENGTH_SHORT).show();
                 listPlayerMoves.clear();
             }
         }
     }
 
+
+    private void showEndScreen(String message){
+        new AlertDialog.Builder(this)
+                .setTitle(passStatus)
+                .setMessage(message)
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
+                .setCancelable(false)
+                .show();
+    }
+
+    void actionSuite(){
+
+    }
 
 
 

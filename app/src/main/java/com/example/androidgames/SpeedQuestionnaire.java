@@ -107,10 +107,10 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
             mul=0;
         }
 
-        showEndScreen("Score is " + mul + "\n(in "+ seconds+ " s "+milliseconds + "ms and " + score +"/"+totalQuestion+")");
+        showEndScreen("Your score is : " + mul + "\n(in "+ seconds+ " s "+milliseconds + "ms and " + score +"/"+totalQuestion+")");
     }
 
-    void restart() {
+    void actionSuite() {
         score = 0;
         currentQuestionIndex = 0;
         loadNewQuestion();
@@ -139,7 +139,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage(message)
-                .setPositiveButton("Restart",(dialogInterface, i) ->restart())
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
                 .setCancelable(false)
                 .show();
     }

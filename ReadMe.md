@@ -18,10 +18,10 @@ Le joueur doit cacher son capteur de luminosité le plus vite possible pour gagn
 ## Mega_ball : (accéléromètre)
 Le joueur doit atteindre le point rouge le plus vite possible en inclinant son téléphone. 
 
-## Questionnaire : (question) 
+## Questionnaire : (questions-réponses) 
 Le joueur doit répondre à des questions à choix multiples où la bonne réponse n'est pas toujours au même endroit. 
 
-## Speed_Questionnaire : (réponse)
+## Speed_Questionnaire : (questions-réponses)
 Le joueur doit répondre à des questions où seules deux réponses sont possibles en étant le plus rapide possible.  
 
 ## Decompte : (timer + affichage) 

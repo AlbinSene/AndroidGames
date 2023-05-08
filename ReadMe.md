@@ -2,6 +2,11 @@
 
 Notre projet de programmation est une application regroupant 6 mini-jeux utilisant différents capteurs. Ce projet a été conçu dans le cadre du module de programmation mobile à l'ESIR. 
 
+Ce projet a été crée en Java avec Android Studio. Il est possible de jouer 
+- en mode entraînement solo : s'entrainer aux mini-jeux sans conséquence sur le score
+- en mode défi solo : enchaînement de trois mini-jeux aléatoires écran de fin signifiant la victoire ou l'échec avec une musique 
+- en mode défi multijoueur : enchaînement de trois mini-jeux aléatoires écran de fin signifiant la victoire ou l'échec avec une musique en fonction du score de l'autre 
+
 # Participants 
 ### LE DET Noémie
 ### SENE Albin

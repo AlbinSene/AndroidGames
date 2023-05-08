@@ -19,6 +19,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
     Button submitBtn;
 
     int score = 0;
+    int questioncorrect=0;
     private String passStatus = "Failed";
     int totalQuestion = SpeedQA.question.length;
     int currentQuestionIndex = 0;
@@ -65,7 +66,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         Button clickedButton = (Button) view;
         if (clickedButton.getId() == R.id.submit_btn) {
             if (selectedAnswer.equals(SpeedQA.correctAnswers[currentQuestionIndex])) {
-                score++;
+                questioncorrect++;
             }
             currentQuestionIndex++;
             loadNewQuestion();
@@ -96,24 +97,22 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
     }
 
     void finishQuiz() {
-        int mul;
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
         mCountDownTimer.cancel();
-        if (seconds < totalQuestion * 3 && score>0.6*totalQuestion ) {
+        if (seconds < totalQuestion * 3 && questioncorrect>0.6*totalQuestion ) {
             passStatus = "Passed";
-            mul = 12*seconds + 6* milliseconds;
+            score = 12*seconds + 6* milliseconds + questioncorrect*100;
         } else {
             passStatus = "Failed";
-            mul=0;
         }
 
-        showEndScreen("Your score is : " + mul + "\n(in "+ seconds+ " s "+milliseconds + "ms and " + score +"/"+totalQuestion+")");
+        showEndScreen("Your score is : " + score + "\n(in "+ seconds+ " s "+milliseconds + "ms and " + questioncorrect +"/"+totalQuestion+")");
     }
 
-    void actionSuite() {
+    void actionSuite(int score) {
         Intent intent = new Intent();
-        intent.putExtra("key_score", 666);
+        intent.putExtra("key_score", score);
 
         setResult(RESULT_OK, intent);
 
@@ -131,7 +130,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-                String timeLeftFormatted = "Score : "+score;
+                String timeLeftFormatted = "Your score is : "+score;
                 showEndScreen(timeLeftFormatted);
             }
         }.start();
@@ -142,7 +141,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage(message)
-                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite(score))
                 .setCancelable(false)
                 .show();
     }

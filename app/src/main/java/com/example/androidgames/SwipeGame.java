@@ -18,6 +18,7 @@ public class SwipeGame extends AppCompatActivity {
     private ArrayList<String> listWin = new ArrayList<>();
     private ArrayList<String> listPlayerMoves = new ArrayList<>();
     private String passStatus = "Failed";
+    private int score=0;
 
     TextView timer; // TextView pour afficher le compte à rebours
 
@@ -76,7 +77,7 @@ public class SwipeGame extends AppCompatActivity {
                 //Toast.makeText(SwipeGame.this, "Gagne", Toast.LENGTH_SHORT).show();
                 passStatus = "Passed";
                 //Log.i("DEBUG","win");
-                int score =6 * seconds + 12 * milliseconds;
+                score =6 * seconds + 12 * milliseconds;
                showEndScreen("Your score is: " + seconds + "s " + milliseconds + "ms\nYour score is " + score);
             } else {
                 Log.i("DEBUG","loose");
@@ -92,15 +93,15 @@ public class SwipeGame extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage(message)
-                .setPositiveButton("OK", (dialogInterface, i) -> actionSuite())
+                .setPositiveButton("OK", (dialogInterface, i) -> actionSuite(score))
                 .setCancelable(false)
                 .show();
         onPause();
     }
 
-    void actionSuite() {
+    void actionSuite(int score) {
         Intent intent = new Intent();
-        intent.putExtra("key_score", 666);
+        intent.putExtra("key_score", score);
 
         setResult(RESULT_OK, intent);
 

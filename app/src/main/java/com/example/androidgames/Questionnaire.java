@@ -104,14 +104,14 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage(message)
-                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite(score*1000))
                 .setCancelable(false)
                 .show();
     }
 
-    void actionSuite(){
+    void actionSuite(int score){
         Intent intent = new Intent();
-        intent.putExtra("key_score", 666);
+        intent.putExtra("key_score", score);
 
         setResult(RESULT_OK, intent);
 

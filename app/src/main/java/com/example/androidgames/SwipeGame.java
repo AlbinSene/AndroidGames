@@ -79,6 +79,7 @@ public class SwipeGame extends AppCompatActivity {
                 //Log.i("DEBUG","win");
                 score =6 * seconds + 12 * milliseconds;
                showEndScreen("Your score is: " + seconds + "s " + milliseconds + "ms\nYour score is " + score);
+                mCountDownTimer.cancel();
             } else {
                 Log.i("DEBUG","loose");
                 // Mouvements incorrects, perd

@@ -16,11 +16,11 @@ Le joueur doit atteindre le point rouge le plus vite possible en inclinant son t
 ## Questionnaire : (question) 
 Le joueur doit répondre à des questions à choix multiples où la bonne réponse n'est pas toujours au même endroit. 
 
-# Speed_Questionnaire : (réponse)
+## Speed_Questionnaire : (réponse)
 Le joueur doit répondre à des questions où seules deux réponses sont possibles en étant le plus rapide possible.  
 
-# Decompte : (timer + affichage) 
+## Decompte : (timer + affichage) 
  Le joueur doit estimer la bonne valeur du décompte qui est caché au bout de 5 secondes. 
  
-# Swipegame : (mouvement sur l'écran)
+## Swipegame : (mouvement sur l'écran)
 Le joueur doit réaliser la bonne série de mouvement sur l'écran le plus vite possible pour maximiser ces points.

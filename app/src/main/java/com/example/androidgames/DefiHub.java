@@ -103,4 +103,8 @@ public class DefiHub extends AppCompatActivity {
             textScore.setText("Dommage !\nVotre score est : " + sommeScore);
         }
     }
+
+    public void finRetour(View v){
+        finish();
+    }
 }

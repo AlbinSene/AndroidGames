@@ -50,16 +50,16 @@ public class MegaBall extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(passStatus);
         builder.setMessage("Your score is : "+score);
-        builder.setPositiveButton("OK", (dialogInterface, i) ->actionSuite());
+        builder.setPositiveButton("OK", (dialogInterface, i) ->actionSuite(score));
         builder.show();
         onPause();
         //setContentView(R.layout.activity_light_sensor);
 
     }
 
-    void actionSuite(){
+    void actionSuite(int score){
         Intent intent = new Intent();
-        intent.putExtra("key_score", 666);
+        intent.putExtra("key_score", score);
 
         setResult(RESULT_OK, intent);
 

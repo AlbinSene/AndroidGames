@@ -39,6 +39,7 @@ public class Decompte extends AppCompatActivity {
     private int condVictoire = 4100;
     private int marge = 1000;
     private int dureeAvantCache = 5000;
+    private int score = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +84,7 @@ public class Decompte extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage(message)
-                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite(score))
                 .setCancelable(false)
                 .show();
     }
@@ -108,11 +109,10 @@ public class Decompte extends AppCompatActivity {
     private String compScore(){
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-        int score = 6*seconds + 12* milliseconds;
+        score = 6*seconds + 12* milliseconds;
         if (passStatus=="Failed"){
             seconds=0;
             milliseconds=0;
-            score=0;
         }
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", seconds, milliseconds);
         return ("You did : "+timeLeftFormatted + "\n Your score is : " + score);
@@ -136,9 +136,9 @@ public class Decompte extends AppCompatActivity {
         parentLayout.addView(rectangleView, layoutParams);
     }
 
-    void actionSuite(){
+    void actionSuite(int score){
         Intent intent = new Intent();
-        intent.putExtra("key_score", 666);
+        intent.putExtra("key_score", score);
 
         setResult(RESULT_OK, intent);
 

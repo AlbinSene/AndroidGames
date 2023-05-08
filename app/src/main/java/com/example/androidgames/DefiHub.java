@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class DefiHub extends AppCompatActivity {
 
     private List<Integer> activityToDo = new ArrayList<>();
+    private int sommeScore = 0;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,10 @@ public class DefiHub extends AppCompatActivity {
                 Log.d("DEBUG",activityToDo + "");
                 int score = data.getIntExtra("key_score", 0);
                 Log.d("DEBUG","Fin du jeu " + score);
+
+                sommeScore += score;
+                TextView textScore = (TextView) findViewById(R.id.score);
+                textScore.setText("Score : " + sommeScore);
             }
         }
     }

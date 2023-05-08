@@ -3,10 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:onClick="nextGame"/>
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/score"
+            android:layout_centerInParent="true"
+            android:text="Score"
+            android:textAlignment="center"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jeu Suivant"
+            android:onClick="nextGame"/>
+
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>

@@ -21,7 +21,7 @@ public class DefiHub extends AppCompatActivity {
         setContentView(R.layout.activity_defi_hub);
 
         activityToDo.add(0);
-        //activityToDo.add(1);
+        activityToDo.add(1);
         activityToDo.add(2);
         activityToDo.add(3);
         activityToDo.add(4);

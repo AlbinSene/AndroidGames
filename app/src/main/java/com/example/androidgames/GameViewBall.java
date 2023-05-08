@@ -48,9 +48,9 @@ public class GameViewBall extends View implements SensorEventListener {
     private boolean mTimerRunning; // Booléen pour vérifier si le compte à rebours est en cours d'exécution
 
 
-    private static int victoireX = 60 ;
-    private static int victoireY = 60;
-    private static int marge = 50;
+    private static int victoireX = 65 ;
+    private static int victoireY = 65;
+    private static int marge = 100;
     private int score=0;
     private String passStatus= "Failed";
 
@@ -111,7 +111,7 @@ public class GameViewBall extends View implements SensorEventListener {
         paint.setColor(Color.RED);
 
         // Dessiner un cercle rouge de 1 pixel de diamètre aux coordonnées de victoire
-        canvas.drawCircle(victoireX, victoireY, 14f, paint);
+        canvas.drawCircle(victoireX+100, victoireY+100, 20f, paint);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class GameViewBall extends View implements SensorEventListener {
         //affichage des x et y
         //Log.i("DEBUG", x + " - " + y);
         this.moveImage(-x*4,y*4);
-        invalidate();
+        //invalidate();
 
     }
     private void moveImage(float x, float y){
@@ -149,23 +149,22 @@ public class GameViewBall extends View implements SensorEventListener {
         //Log.i("DEBUG", currentX +" , " + currentY + " --- " + timer);
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-        if(this.currentX>victoireX //&& this.currentX>victoireX+marge
-                && this.currentY>victoireY //&& this.currentY>victoireY+marge
-               && seconds>1 && milliseconds>10
+        if(this.currentX>victoireX-marge && this.currentX<victoireX+marge
+                && this.currentY>victoireY- marge && this.currentY<victoireY+marge
+               && seconds>0 && milliseconds>1
         ){
             Log.i("DEBUG", "cond victoire ");
             score =1000;
             passStatus="Passed";
             ((MegaBall) getContext()).traiterGameView(this,score,passStatus);
+        } else if (seconds<0 && milliseconds<1){
+            ((MegaBall) getContext()).traiterGameView(this,score,passStatus);
         }
             //Log.i("DEBUG", "victoire");
-        invalidate();
+        this.invalidate();
     }
 
 
-    public static void restartGame(){
-        restart=1;
-    }
 
 
     private void startTimer() {
@@ -184,18 +183,6 @@ public class GameViewBall extends View implements SensorEventListener {
         }.start();
     }
 
-        private String compScore(){
-            int seconds = (int) (mTimeLeftInMillis ) / 1000;
-            int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-            int score = 6*seconds + 12* milliseconds;
-            if (passStatus=="Failed"){
-                seconds=0;
-                milliseconds=0;
-                score=0;
-            }
-            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", seconds, milliseconds);
-            return ("You did : "+timeLeftFormatted + "\n Your score is : " + score);
-    }
 }
 
 

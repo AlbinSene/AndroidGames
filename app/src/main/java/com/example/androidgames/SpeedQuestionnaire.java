@@ -106,8 +106,8 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         } else {
             passStatus = "Failed";
         }
-
-        showEndScreen("Your score is : " + score + "\n(in "+ seconds+ " s "+milliseconds + "ms and " + questioncorrect +"/"+totalQuestion+")");
+        String message = "You did : " +questioncorrect+"/" +totalQuestion+" in "+ seconds+ " s "+milliseconds + "ms\nYour score is : "+ score;
+        showEndScreen(message);
     }
 
     void actionSuite(int score) {

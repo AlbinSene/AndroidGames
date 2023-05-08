@@ -16,6 +16,7 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
     Button submitBtn;
 
     int score=0;
+    int questionCorrecte=0;
     int totalQuestion = QuestionAnswer.question.length;
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
@@ -61,7 +62,7 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
         Button clickedButton = (Button) view;
         if(clickedButton.getId()==R.id.submit_btn){
             if(selectedAnswer.equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
-                score++;
+                questionCorrecte++;
             }
             currentQuestionIndex++;
             loadNewQuestion();
@@ -92,19 +93,21 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
     }
 
     void finishQuiz(){
-        if(score > totalQuestion*0.60){
+        if(questionCorrecte > totalQuestion*0.60){
             passStatus = "Passed";
+            score = questionCorrecte*300;
         }else{
             passStatus = "Failed";
         }
-        showEndScreen("Your score is : "+ score+" out of "+ totalQuestion);
+        String message = "You did : " +questionCorrecte+"/" +totalQuestion+"\nYour score is : "+ score;
+        showEndScreen(message);
     }
 
     private void showEndScreen(String message){
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage(message)
-                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite(score*1000))
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite(score))
                 .setCancelable(false)
                 .show();
     }

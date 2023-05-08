@@ -33,6 +33,8 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
 
+    private int score=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +116,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
         new AlertDialog.Builder(this)
                 .setTitle(passStatus)
                 .setMessage(message)
-                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite())
+                .setPositiveButton("OK",(dialogInterface, i) ->actionSuite(score))
                 .setCancelable(false)
                 .show();
         onPause();
@@ -126,11 +128,10 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     private String compScore(){
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-        int score = 12*seconds + 6* milliseconds;
+        score = 12*seconds + 6* milliseconds;
         if (passStatus=="Failed"){
             seconds=0;
             milliseconds=0;
-            score=0;
         }
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02ds %02dms", seconds, milliseconds);
     return ("You did : "+timeLeftFormatted + "\n Your score is : " + score);
@@ -139,9 +140,9 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
 
-    void actionSuite(){
+    void actionSuite(int score){
         Intent intent = new Intent();
-        intent.putExtra("key_score", 666);
+        intent.putExtra("key_score", score);
 
         setResult(RESULT_OK, intent);
 

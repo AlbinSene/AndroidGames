@@ -120,6 +120,7 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
                 .setCancelable(false)
                 .show();
         onPause();
+        mCountDownTimer.cancel();
         //mCountDownTimer.onFinish();
     }
     /*

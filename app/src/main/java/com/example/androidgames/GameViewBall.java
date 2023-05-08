@@ -111,7 +111,7 @@ public class GameViewBall extends View implements SensorEventListener {
         paint.setColor(Color.RED);
 
         // Dessiner un cercle rouge de 1 pixel de diamètre aux coordonnées de victoire
-        canvas.drawCircle(victoireX+100, victoireY+100, 20f, paint);
+        canvas.drawCircle(victoireX+140, victoireY+120, 20f, paint);
     }
 
     @Override

@@ -75,8 +75,18 @@ public class DefiHub extends AppCompatActivity {
                 sommeScore += score;
                 TextView textScore = (TextView) findViewById(R.id.score);
                 textScore.setText("Score : " + sommeScore);
+
+                if (activityToDo.size() == 0){
+                    changeLayoutFinal();
+                }
+
             }
         }
     }
 
+    private void changeLayoutFinal(){
+        setContentView(R.layout.fin_defi);
+        TextView textScore = (TextView) findViewById(R.id.scoreFinal);
+        textScore.setText("Bravo !\nVotre score est : " + sommeScore);
+    }
 }

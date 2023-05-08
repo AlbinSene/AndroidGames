@@ -2,6 +2,7 @@ package com.example.androidgames;
 
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,8 @@ public class DefiHub extends AppCompatActivity {
 
     private List<Integer> activityToDo = new ArrayList<>();
     private int sommeScore = 0;
+    MediaPlayer sound;
+    private boolean win =false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +89,18 @@ public class DefiHub extends AppCompatActivity {
 
     private void changeLayoutFinal(){
         setContentView(R.layout.fin_defi);
-        TextView textScore = (TextView) findViewById(R.id.scoreFinal);
-        textScore.setText("Bravo !\nVotre score est : " + sommeScore);
+        if(win) {
+            sound = MediaPlayer.create(DefiHub.this, R.raw.gagne);
+            sound.start();
+            //sound.release();
+            TextView textScore = (TextView) findViewById(R.id.scoreFinal);
+            textScore.setText("Bravo !\nVotre score est : " + sommeScore);
+        } else {
+            sound = MediaPlayer.create(DefiHub.this, R.raw.perdu);
+            sound.start();
+            //sound.release();
+            TextView textScore = (TextView) findViewById(R.id.scoreFinal);
+            textScore.setText("Dommage !\nVotre score est : " + sommeScore);
+        }
     }
 }

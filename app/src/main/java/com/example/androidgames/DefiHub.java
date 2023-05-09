@@ -19,7 +19,7 @@ public class DefiHub extends AppCompatActivity {
     private int sommeScore = 0;
     MediaPlayer sound;
     private boolean win =false;
-    private int seuil = (int)(2/3*2000*6);
+    private int seuil = 8000; // a changer par 4000 si 3 jeux
     private boolean modeMulti=false;
 
 

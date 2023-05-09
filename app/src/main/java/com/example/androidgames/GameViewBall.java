@@ -154,7 +154,7 @@ public class GameViewBall extends View implements SensorEventListener {
                && seconds>0 && milliseconds>1
         ){
             Log.i("DEBUG", "cond victoire ");
-            score =1000;
+            score = (int) (1000 + 1000*mTimeLeftInMillis/START_TIME_IN_MILLIS);
             passStatus="Passed";
             ((MegaBall) getContext()).traiterGameView(this,score,passStatus);
             mCountDownTimer.cancel();

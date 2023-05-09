@@ -77,11 +77,11 @@ public class SwipeGame extends AppCompatActivity {
                 //Toast.makeText(SwipeGame.this, "Gagne", Toast.LENGTH_SHORT).show();
                 passStatus = "Passed";
                 //Log.i("DEBUG","win");
-                score =6 * seconds + 12 * milliseconds;
+                score =(int)(2000*mTimeLeftInMillis/START_TIME_IN_MILLIS);
                showEndScreen("Your score is: " + seconds + "s " + milliseconds + "ms\nYour score is " + score);
                 mCountDownTimer.cancel();
             } else {
-                Log.i("DEBUG","loose");
+                //Log.i("DEBUG","loose");
                 // Mouvements incorrects, perd
                 //Toast.makeText(SwipeGame.this, "PERD", Toast.LENGTH_SHORT).show();
                 showEndScreen("You did: 0s 0ms\nYour score is: 0");

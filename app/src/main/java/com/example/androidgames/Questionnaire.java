@@ -95,7 +95,7 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
     void finishQuiz(){
         if(questionCorrecte > totalQuestion*0.60){
             passStatus = "Passed";
-            score = questionCorrecte*300;
+            score = 2000*questionCorrecte/totalQuestion;
         }else{
             passStatus = "Failed";
         }

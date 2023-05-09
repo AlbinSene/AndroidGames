@@ -129,11 +129,10 @@ public class Light_sensor extends AppCompatActivity implements SensorEventListen
     private String compScore(){
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-        score = 12*seconds + 6* milliseconds;
         if (passStatus=="Failed"){
-            seconds=0;
-            milliseconds=0;
+            mTimeLeftInMillis=0;
         }
+        score = (int)(2000*mTimeLeftInMillis/START_TIME_IN_MILLIS);
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02ds %02dms", seconds, milliseconds);
     return ("You did : "+timeLeftFormatted + "\n Your score is : " + score);
     }

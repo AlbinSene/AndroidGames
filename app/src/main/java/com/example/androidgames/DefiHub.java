@@ -19,6 +19,8 @@ public class DefiHub extends AppCompatActivity {
     private int sommeScore = 0;
     MediaPlayer sound;
     private boolean win =false;
+    private int seuil = (int)(2/3*2000*6);
+    private boolean modeMulti=false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,11 @@ public class DefiHub extends AppCompatActivity {
 
     private void changeLayoutFinal(){
         setContentView(R.layout.fin_defi);
+        if (sommeScore >seuil){
+            win=true;
+        } else {
+            win =false;
+        }
         if(win) {
             sound = MediaPlayer.create(DefiHub.this, R.raw.gagne);
             sound.start();

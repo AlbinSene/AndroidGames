@@ -102,7 +102,7 @@ public class SpeedQuestionnaire extends AppCompatActivity implements View.OnClic
         mCountDownTimer.cancel();
         if (seconds < totalQuestion * 3 && questioncorrect>0.6*totalQuestion ) {
             passStatus = "Passed";
-            score = 12*seconds + 6* milliseconds + questioncorrect*100;
+            score = (int)(1000*questioncorrect/totalQuestion+1000*mTimeLeftInMillis/START_TIME_IN_MILLIS);
         } else {
             passStatus = "Failed";
         }

@@ -36,8 +36,8 @@ public class Decompte extends AppCompatActivity {
     private boolean rectangleDisplayed = false; // Booléen pour vérifier si le rectangle est déjà affiché
 
     // Définition de la durée à atteindre pour réussir l'objectif, avec une marge de 500 millisecondes
-    private int condVictoire = 4100;
-    private int marge = 1000;
+    private static int condVictoire = 4100;
+    private static int marge = 1000;
     private int dureeAvantCache = 5000;
     private int score = 0;
     @Override
@@ -109,11 +109,10 @@ public class Decompte extends AppCompatActivity {
     private String compScore(){
         int seconds = (int) (mTimeLeftInMillis ) / 1000;
         int milliseconds = (int) (mTimeLeftInMillis ) % 1000;
-        score = 6*seconds + 12* milliseconds;
-        if (passStatus=="Failed"){
-            seconds=0;
-            milliseconds=0;
+        if (passStatus.equals("Failed")){
+            mTimeLeftInMillis=0;
         }
+        score = (int)(calculateScore(mTimeLeftInMillis));
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", seconds, milliseconds);
         return ("You did : "+timeLeftFormatted + "\n Your score is : " + score);
     }
@@ -143,6 +142,15 @@ public class Decompte extends AppCompatActivity {
         setResult(RESULT_OK, intent);
 
         finish();
+    }
+
+    private static double calculateScore(long playerTime) {
+        if (playerTime >= condVictoire - marge && playerTime <= condVictoire + marge) {
+            double ratio = 1.0 - ((double) Math.abs(playerTime - condVictoire) / marge);
+            return ratio * 2000;
+        }
+
+        return 0;
     }
 
 }

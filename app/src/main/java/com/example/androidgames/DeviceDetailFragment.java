@@ -106,16 +106,20 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     public void onClick(View v) {
                         // Allow user to pick an image from Gallery or other
                         // registered apps
-                        /*Uri filePath = Uri.parse("wifip2pshared"+System.currentTimeMillis()+".txt");
+                        Uri filePath = Uri.parse("wifip2pshared"+System.currentTimeMillis()+".txt");
                         String file_url_send = new File(filePath.getPath()).getAbsolutePath();
+                        int [] tableau = {0,1,2,3,4,5};
+                        //Log.i("debug", file_url_send);
                         Intent serviceIntent = new Intent(getActivity(), FileTransferService.class);
                         serviceIntent.setAction(FileTransferService.ACTION_SEND_FILE);
                         serviceIntent.putExtra(FileTransferService.EXTRAS_FILE_PATH,file_url_send.toString());
                         serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_ADDRESS,info.groupOwnerAddress.getHostAddress());
-                        getActivity().startService(serviceIntent);*/
-                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_PORT,8988);
+                        serviceIntent.putExtra(String.valueOf(FileTransferService.TABLEAU),tableau);
+                        getActivity().startService(serviceIntent);
+                        /*Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                         intent.setType("image/*");
-                        startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
+                        startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);*/
                     }
                 });
 

@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -27,6 +29,7 @@ public class FileTransferService extends IntentService {
     public static final String EXTRAS_FILE_PATH = "file_url";
     public static final String EXTRAS_GROUP_OWNER_ADDRESS = "go_host";
     public static final String EXTRAS_GROUP_OWNER_PORT = "go_port";
+    public static final int[] TABLEAU = {} ;
 
     public FileTransferService(String name) {
         super(name);
@@ -44,6 +47,10 @@ public class FileTransferService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         Context context = getApplicationContext();
+        String filename = "listeJeux";
+        File file = new File(context.getFilesDir(), filename);
+        String fileContents = TABLEAU.toString();
+        setFileContent(filename,fileContents);
         if (intent.getAction().equals(ACTION_SEND_FILE)) {
             String fileUri = intent.getExtras().getString(EXTRAS_FILE_PATH);
             String host = intent.getExtras().getString(EXTRAS_GROUP_OWNER_ADDRESS);
@@ -83,4 +90,13 @@ public class FileTransferService extends IntentService {
 
         }
     }
+    private void setFileContent(String filename, String fileContents){
+        Context context = getApplicationContext();
+        try (FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE)) {
+            fos.write(fileContents.getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+

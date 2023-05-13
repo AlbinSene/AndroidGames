@@ -47,7 +47,7 @@ public class FileTransferService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         Context context = getApplicationContext();
-        String filename = EXTRAS_FILE_PATH;
+        String filename = "listeJeux.txt";
         File file = new File(context.getFilesDir(), filename);
         String fileContents = TABLEAU.toString();
         setFileContent(filename,fileContents);

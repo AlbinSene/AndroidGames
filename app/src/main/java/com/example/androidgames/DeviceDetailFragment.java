@@ -106,7 +106,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     public void onClick(View v) {
                         // Allow user to pick an image from Gallery or other
                         // registered apps
-                        Uri filePath = Uri.parse("wifip2pshared"+System.currentTimeMillis()+".txt");
+                        //Uri filePath = Uri.parse("wifip2pshared"+System.currentTimeMillis()+".txt");
+                        Uri filePath = Uri.parse("listeJeux.txt");
                         String file_url_send = new File(filePath.getPath()).getAbsolutePath();
                         int [] tableau = {0,1,2,3,4,5};
                         //Log.i("debug", file_url_send);

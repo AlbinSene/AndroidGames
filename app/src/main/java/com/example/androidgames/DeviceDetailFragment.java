@@ -132,8 +132,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                         Intent intent = new Intent(getContext(),DefiHub.class);
                         //startActivity(intent);
                         getActivity().startActivity(intent);
-                        intent = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.setType("image/*");
+                        //intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        //intent.setType("image/*");
                         startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
                     }
                 });

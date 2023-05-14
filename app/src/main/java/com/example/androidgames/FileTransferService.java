@@ -29,7 +29,7 @@ public class FileTransferService extends IntentService {
     public static final String EXTRAS_FILE_PATH = "file_url";
     public static final String EXTRAS_GROUP_OWNER_ADDRESS = "go_host";
     public static final String EXTRAS_GROUP_OWNER_PORT = "go_port";
-    public static final int[] TABLEAU = {} ;
+    //public static final int[] TABLEAU = {} ;
 
     public FileTransferService(String name) {
         super(name);
@@ -47,10 +47,10 @@ public class FileTransferService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         Context context = getApplicationContext();
-        String filename = "listeJeux.txt";
+        /*String filename = "listeJeux.txt";
         File file = new File(context.getFilesDir(), filename);
         String fileContents = TABLEAU.toString();
-        setFileContent(filename,fileContents);
+        setFileContent(filename,fileContents);*/
         if (intent.getAction().equals(ACTION_SEND_FILE)) {
             String fileUri = intent.getExtras().getString(EXTRAS_FILE_PATH);
             String host = intent.getExtras().getString(EXTRAS_GROUP_OWNER_ADDRESS);

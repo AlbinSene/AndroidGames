@@ -107,7 +107,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                         // Allow user to pick an image from Gallery or other
                         // registered apps
                         //Uri filePath = Uri.parse("wifip2pshared"+System.currentTimeMillis()+".txt");
-                        Uri filePath = Uri.parse("listeJeux.txt");
+                        /*Uri filePath = Uri.parse("listeJeux.txt");
                         String file_url_send = new File(filePath.getPath()).getAbsolutePath();
                         int [] tableau = {0,1,2,3,4,5};
                         //Log.i("debug", file_url_send);
@@ -117,10 +117,24 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                         serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_ADDRESS,info.groupOwnerAddress.getHostAddress());
                         serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_PORT,8988);
                         serviceIntent.putExtra(String.valueOf(FileTransferService.TABLEAU),tableau);
+                        getActivity().startService(serviceIntent);*/
+                        Uri filePath = Uri.parse("wifip2pshared-" + System.currentTimeMillis() + ".txt");
+
+                        String file_url_send = new File(filePath.getPath()).getAbsolutePath();
+
+
+                        Intent serviceIntent = new Intent(getActivity(), FileTransferService.class);
+                        serviceIntent.setAction(FileTransferService.ACTION_SEND_FILE);
+                        serviceIntent.putExtra(FileTransferService.EXTRAS_FILE_PATH, file_url_send.toString());
+                        serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_ADDRESS, info.groupOwnerAddress.getHostAddress());
+                        serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_PORT, 8988);
                         getActivity().startService(serviceIntent);
-                        /*Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        Intent intent = new Intent(getContext(),DefiHub.class);
+                        //startActivity(intent);
+                        getActivity().startActivity(intent);
+                        intent = new Intent(Intent.ACTION_GET_CONTENT);
                         intent.setType("image/*");
-                        startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);*/
+                        startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
                     }
                 });
 
@@ -272,10 +286,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                 context,
                                 "com.example.android.wifidirect.fileprovider",
                                 recvFile);
-                Intent intent = new Intent();
+                /*Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setDataAndType(fileUri, "image/*");
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                context.startActivity(intent);*/
+
+                Intent intent = new Intent(context,DefiHub.class);
                 context.startActivity(intent);
             }
 

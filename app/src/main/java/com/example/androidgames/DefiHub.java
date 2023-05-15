@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class DefiHub extends AppCompatActivity {
 
@@ -26,13 +27,14 @@ public class DefiHub extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_defi_hub);
-
         activityToDo.add(0);
         activityToDo.add(1);
         activityToDo.add(2);
         activityToDo.add(3);
         activityToDo.add(4);
         activityToDo.add(5);
+
+        choixJeux(activityToDo,3);
     }
 
     public void nextGame(View v){
@@ -113,5 +115,12 @@ public class DefiHub extends AppCompatActivity {
 
     public void finRetour(View v){
         finish();
+    }
+
+    private void choixJeux(List<Integer> list,int n){
+        while (list.size() > n){
+            int randomNum = ThreadLocalRandom.current().nextInt(0, list.size());
+            list.remove(randomNum);
+        }
     }
 }
